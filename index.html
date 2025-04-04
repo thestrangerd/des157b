@@ -30,20 +30,21 @@
 
             <header>
                 <div id="website">
-                    <img src="images/leftarrow.svg" alt="left arrow icon">
-                    <img src="images/rightarrow.svg" alt="right arrow icon">
-                    <img src="images/refresh.svg" alt="refresh icon">
-                    <img src="images/home.svg" alt="home icon">
+                    <!-- put icons into css -->
+                    <div id="leftarrow" class="icon" onclick="history.back();"></div>
+                    <div id="rightarrow" class="icon"></div>
+                    <div id="refresh" class="icon" onclick="location.reload();"></div>
+                    <div id="home" class="icon"></div>
 
                     <div id="searchbar">
                         <p>www.ashleysetohomepage.com</p>
-                        <img src="images/search.svg" alt="magnifying search icon">
+                        <div id="search" class="icon"></div>
                     </div>
 
-                    <img src="images/heart.svg" alt="heart icon">
-                    <img src="images/download.svg" alt="download icon">
-                    <img src="images/account.svg" alt="account icon">
-                    <img src="images/menu.svg" alt="three dots menu icon">
+                    <div id="heart" class="icon"></div>
+                    <div id="download" class="icon"></div>
+                    <div id="account" class="icon"></div>
+                    <div id="menu" class="icon"></div>
                 </div>
     
                 <div id="banner">
@@ -135,15 +136,34 @@
                             <h2>Let's Connect!</h2>
                         </div>
                         <!-- add social icons -->
-                        <nav id="icon-container">
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                        <nav>
+
+                            <button class="socials">
+                                <a href="https://www.instagram.com/ashleyseeeto/" target="_blank">
+                                    <div id="insta"></div>
+                                </a>
+                            </button>
+
+                            <button class="socials">
+                                <a href="https://www.linkedin.com/in/ashleyjseto/" target="_blank">
+                                    <div id="linkedin"></div>
+                                </a>
+                            </button>
+
+                            <button class="socials">
+                                <a href="mailto:&#097;&#115;&#104;&#108;&#101;&#121;&#115;&#101;&#116;&#111;&#050;&#053;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">
+                                    <div id="email"></div>
+                                </a>
+                            </button>
+
                         </nav>
                     </section>
                 </div>
     
-                <button><img src='images/sun.svg' alt="sun icon"></button>
+                <button id="switch">
+                    <img src='images/sun.svg' alt="sun icon">
+                    <img src="images/moon.svg" alt="moon icon">
+                </button>
     
             </main>
         </div>

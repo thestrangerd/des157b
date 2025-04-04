@@ -49,7 +49,7 @@ body.switch {
     max-width: 1366px;
     min-width: 900px;
     margin: 1em auto;
-    padding-top: 2em;
+    padding-top: 1em;
 }
 
 header, section {
@@ -126,7 +126,30 @@ header.switch p {
     padding: 0 1em 0 1.7em;
 }
 
-button {
+.icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+/* navbar icons */
+#leftarrow { background: url("images/leftarrow.svg") no-repeat center/contain; }
+#rightarrow { background: url("images/rightarrow.svg") no-repeat center/contain; }
+#refresh { background: url("images/refresh.svg") no-repeat center/contain; }
+#home { background: url("images/home.svg") no-repeat center/contain; }
+#search { background: url("images/search.svg") no-repeat center/contain; }
+#heart { background: url("images/heart.svg") no-repeat center/contain; }
+#download { background: url("images/download.svg") no-repeat center/contain; }
+#account { background: url("images/account.svg") no-repeat center/contain; }
+#menu { background: url("images/menu.svg") no-repeat center/contain; }
+
+/* --------------- */
+
+#switch {
     background-color: #32363F;
     color: #FFF7F7;
     border: none;
@@ -140,13 +163,22 @@ button {
 }
 
 button:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     cursor: pointer;
 }
 
 button.switch {
     color: #32363F;
     background-color: #FFF7F7;
+}
+
+button img {
+    transition: transform 0.5s ease-in-out;
+    opacity: 1
+}
+
+button:hover img {
+    transform: rotate(180deg);
 }
 
 /* --------------- */
@@ -182,7 +214,7 @@ section {
 }
 
 nav {
-    padding: 0 2em 2em 2em;
+    padding: 0 2em 1.3em 2em;
 }
 
 .heading {
@@ -253,4 +285,36 @@ a:hover::after {
     width: 100%;
 }
 
+/* CONTACT --------------- */
 
+#contact nav {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1em;
+}
+
+#contact nav div {
+    width: 20px;
+    height: 20px;
+}
+
+.socials {
+    background-color: #24292D;
+    border: none;
+    border-radius: 50px;
+    padding: 1em 1em 0.8em 1em;
+
+    display: grid;
+    place-content: center;
+    transition: transform 0.5s ease;
+}
+
+.socials:hover {
+    transform: scale(1.2);
+}
+
+#insta { background: url("images/insta.svg") no-repeat center/contain; }
+#linkedin { background: url("images/linkedin.svg") no-repeat center/contain; }
+#email { background: url("images/email.svg") no-repeat center/contain; }

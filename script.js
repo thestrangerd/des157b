@@ -4,7 +4,7 @@
 (function(){
     'use strict';
 
-    const button = document.querySelector('button');
+    const switchbutton = document.querySelector('#switch');
     const body = document.querySelector('body');
     const header = document.querySelector('header');
     const sections = document.querySelectorAll('section');
@@ -12,12 +12,12 @@
     const website = document.querySelector('#website');
     let mode = 'light';
 
-    button.addEventListener('click', function(){
+    switchbutton.addEventListener('click', function(){
         if (mode === 'light') {
             body.className = 'switch';
             header.className = 'switch';
             website.className = 'switch';
-            button.className = 'switch';
+            switchbutton.className = 'switch';
             for (const section of sections) {
                 section.className = 'switch';
             }
@@ -29,7 +29,7 @@
             body.removeAttribute('class');
             header.removeAttribute('class');
             website.removeAttribute('class');
-            button.removeAttribute('class');
+            switchbutton.removeAttribute('class');
             for (const section of sections) {
                 section.removeAttribute('class');
             }
