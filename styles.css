@@ -12,7 +12,7 @@ h1, h2, p, ul {
     padding: 0;
 }
 
-p, a {
+p, a, span {
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-size: 0.875rem;
     text-decoration: none;
@@ -293,7 +293,7 @@ a:hover::after {
     gap: 20px;
     justify-content: center;
     align-items: center;
-    padding-top: 1em;
+    padding-top: 0.7em;
 }
 
 #contact nav div {
@@ -307,6 +307,7 @@ a:hover::after {
     border-radius: 50px;
     padding: 1em 1em 0.8em 1em;
 
+    position: relative;
     display: grid;
     place-content: center;
     transition: transform 0.5s ease;
@@ -314,6 +315,26 @@ a:hover::after {
 
 .socials:hover {
     transform: scale(1.2);
+}
+
+.socialtext {
+    color: #24292D;
+    font-size: 0.7rem;
+    font-weight: 400;
+
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.socials:hover .socialtext {
+    visibility: visible;
+    opacity: 1;
 }
 
 #insta { background: url("images/insta.svg") no-repeat center/contain; }
