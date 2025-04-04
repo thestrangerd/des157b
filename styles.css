@@ -127,6 +127,7 @@ header.switch p {
 }
 
 .icon {
+    cursor: pointer;
     width: 20px;
     height: 20px;
     transition: transform 0.3s ease-in-out;
@@ -172,12 +173,12 @@ button.switch {
     background-color: #FFF7F7;
 }
 
-button img {
+#switch img {
     transition: transform 0.5s ease-in-out;
     opacity: 1
 }
 
-button:hover img {
+#switch:hover img {
     transform: rotate(180deg);
 }
 
@@ -214,7 +215,7 @@ section {
 }
 
 nav {
-    padding: 0 2em 1.3em 2em;
+    padding: 0 1.8em 1.3em 2em;
 }
 
 .heading {
@@ -243,7 +244,7 @@ ul {
     line-height: 2em;
 }
 
-#research ul, #development ul {
+#research ul, #development ul, #capstone ul {
     line-height: 3em;
 }
 
