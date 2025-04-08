@@ -101,10 +101,6 @@ header.switch p {
     padding: 0 1em;
 }
 
-#website img {
-    height: 1em;
-}
-
 #website.switch {
     background-color: #24292D;
 }
@@ -199,6 +195,11 @@ button.switch {
     gap: 12em;
     justify-content: center;
     align-items: center;
+    height: 200px;
+}
+
+#banner img {
+    height: 100%;
 }
 
 #bannertext {
