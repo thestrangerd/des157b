@@ -12,13 +12,13 @@
     const links = document.querySelectorAll('section a');
     const website = document.querySelector('#website');
     const contact = document.querySelector('#contact');
+    const drawing = document.querySelector('#drawing');
     let mode = 'light';
 
     switchbutton.addEventListener('click', function(){
         if (mode === 'light') {
             body.className = 'switch';
             header.className = 'switch';
-            website.className = 'switch';
             website.className = 'switch';
             contact.className = 'switch';
             switchbutton.className = 'switch';
@@ -33,7 +33,6 @@
             body.removeAttribute('class');
             header.removeAttribute('class');
             website.removeAttribute('class');
-            website.removeAttribute('class');
             contact.removeAttribute('class');
             switchbutton.removeAttribute('class');
             for (const section of sections) {
@@ -45,10 +44,16 @@
             mode = 'light';
         }
 
-        if (switchbutton.classList.contains("switch")) {
-            switchicon.src = "images/moon.svg";
+        if (switchbutton.classList.contains('switch')) {
+            switchicon.src = 'images/moon.svg';
         } else {
-            switchicon.src = "images/sun.svg";
+            switchicon.src = 'images/sun.svg';
+        }
+
+        if (website.classList.contains('switch')) {
+            drawing.src = 'images/sleepy.png';
+        } else {
+            drawing.src = 'images/drawing.png';
         }
     })
 
