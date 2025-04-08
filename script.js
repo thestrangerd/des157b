@@ -21,6 +21,7 @@
             website.className = 'switch';
             website.className = 'switch';
             contact.className = 'switch';
+            switchbutton.className = 'switch';
             for (const section of sections) {
                 section.className = 'switch';
             }
@@ -34,6 +35,7 @@
             website.removeAttribute('class');
             website.removeAttribute('class');
             contact.removeAttribute('class');
+            switchbutton.removeAttribute('class');
             for (const section of sections) {
                 section.removeAttribute('class');
             }

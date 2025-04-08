@@ -258,7 +258,7 @@ ul {
     line-height: 3em;
 }
 
-section a {
+section ul a {
     color: #24292D;
     position: relative;
     padding-bottom: 0.3em;
@@ -316,7 +316,7 @@ ul a:hover::after {
     background-color: #24292D;
     border: none;
     border-radius: 50px;
-    padding: 1.2em 1.2em 1em 1.2em;
+    padding: 1.5em;
 
     position: relative;
     display: grid;
@@ -334,7 +334,7 @@ ul a:hover::after {
     font-weight: 400;
 
     position: absolute;
-    bottom: -30px;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
 
