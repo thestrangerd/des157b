@@ -13,6 +13,7 @@
     const website = document.querySelector('#website');
     const contact = document.querySelector('#contact');
     const drawing = document.querySelector('#drawing');
+    const heart = document.querySelector('#heart');
     let mode = 'light';
 
     switchbutton.addEventListener('click', function(){
@@ -56,5 +57,9 @@
             drawing.src = 'images/drawing.png';
         }
     })
+
+    heart.addEventListener('click', function() {
+        heart.classList.toggle ('clicked');
+    });
 
 }());

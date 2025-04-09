@@ -140,6 +140,7 @@ header.switch p {
 #home { background: url("images/home.svg") no-repeat center/contain; }
 #search { background: url("images/search.svg") no-repeat center/contain; }
 #heart { background: url("images/heart.svg") no-repeat center/contain; }
+#heart.clicked { background: url("images/filledheart.svg") no-repeat center/contain; }
 #download { background: url("images/download.svg") no-repeat center/contain; }
 #account { background: url("images/account.svg") no-repeat center/contain; }
 #menu { background: url("images/menu.svg") no-repeat center/contain; }
