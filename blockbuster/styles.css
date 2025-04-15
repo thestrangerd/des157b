@@ -1,14 +1,39 @@
 
 
 
-/* #color {
-    background-color: antiquewhite;
-    width: 100vw;
-    height: 100vh;
-} */
-
 #mainVideo {
     display: block;
     width: 100%;
     margin: auto;
+    position: relative;
+}
+
+#controls {
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+#play, #pause {
+    color: white;
+    font-size: 5rem;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    pointer-events: all;
+    transition: opacity 0.3s ease;
+}
+
+#play.inactive {
+    opacity: 0;
 }
