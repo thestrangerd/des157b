@@ -15,6 +15,7 @@
     let value = 0;
 
 
+    // PLAY/PAUSE BUTTONS
     function updateIcons() {
         if (video.paused) {
             play.style.display = 'inline-block';
@@ -31,6 +32,7 @@
         }
     }
 
+    // PLAY VID IF PRESS PLAY BUTTON
     play.addEventListener('click', function() {
         video.play();
         updateIcons();
@@ -40,6 +42,7 @@
         }, 5000);
     })
 
+    // PAUSE VID IF PRESS PAUSE BUTTON
     pause.addEventListener('click', function() {
         video.pause();
         updateIcons();
@@ -47,6 +50,7 @@
         message.style.display = 'block';
     })
 
+    // PLAY/PAUSE BY CLICKING VIDEO
     video.addEventListener('click', function() {
         if (video.paused) {
             video.play();
@@ -64,6 +68,7 @@
 
     window.addEventListener('load', updateIcons);
 
+    // CHANGE SPEED + FILTER THROUGH MOUSE MOVEMENT
     video.addEventListener('mousemove', function(event) {
         const width = window.innerWidth;
         const mousePos = event.clientX;
@@ -82,6 +87,7 @@
         }
     })
 
+    // ROTATE BETWEEN FILTER SETTINGS FROM BUTTON
     filterBtn.addEventListener('click', function() {
         if (filterMode === 0) {
             video.style.filter = `hue-rotate(${value * 360}deg)`;
