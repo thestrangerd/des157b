@@ -8,32 +8,87 @@
     position: relative;
 }
 
+#message {
+    color: white;
+    font-family: "Young Serif", serif;
+    font-size: 7rem;
+    text-align: center;
+
+    position: absolute;
+    left: 50%;
+
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%);
+    z-index: 10;
+    pointer-events: none;
+    transition: opacity 1s ease-out;
+}
+
+#toptext, #bottomtext {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+#toptext {top: 20%;}
+#bottomtext {top: 65%;}
+
 #controls {
-    background-color: red;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
     pointer-events: none;
 }
 
-#play, #pause {
+.fa-solid {
     color: white;
-    font-size: 5rem;
-    display: none;
     position: absolute;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+#play, #pause {
+    font-size: 3rem;
+    display: none;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
-    pointer-events: all;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-#play.inactive {
-    opacity: 0;
+#pause.inactive {opacity: 0;}
+
+#play:hover, #pause:hover {
+    transform: translate(-50%, -50%) scale(1.2);
 }
+
+#home, #filter {
+    font-size: 1.5rem;
+    display: inline-block;
+    z-index: 2;
+    top: 30px;
+    transition: transform 0.3s ease;
+}
+
+#home {left: 30px;}
+#filter {right: 30px;}
+
+#home:hover, #filter:hover {transform: scale(1.2);}
+
+#filtertext {
+    color: white;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 0.8rem;
+    text-align: right;
+    position: absolute;
+    top: 22px;
+    right: 70px;
+}
+
+

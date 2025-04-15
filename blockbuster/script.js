@@ -7,31 +7,57 @@
     const video = document.querySelector('#mainVideo');
     const play = document.querySelector('#play');
     const pause = document.querySelector('#pause');
-    let controlTimeout;
+    const filterBtn = document.querySelector('#filter');
+    const filtertext = document.querySelector('#filtertext');
+    const message = document.querySelector('#message');
+    let iconTime;
+    let filterMode = 0;
+    let value = 0;
 
 
     function updateIcons() {
         if (video.paused) {
             play.style.display = 'inline-block';
             pause.style.display = 'none';
-        } else {
+            pause.classList.remove('inactive');
+        } else if (!video.paused) {
             play.style.display = 'none';
             pause.style.display = 'inline-block';
-        }
 
-        if (!video.paused) {
-            play.classList.remove('inactive');
-            controlTimeout = setTimeout(() => {
-                play.classList.add('inactive');
-            }, 3000);
+            pause.classList.remove('inactive');
+            iconTime = setTimeout(function() {
+                pause.classList.add('inactive');
+            }, 2000);
         }
     }
+
+    play.addEventListener('click', function() {
+        video.play();
+        updateIcons();
+        message.style.opacity = '0';
+        setTimeout(function() {
+            message.style.display = 'none';
+        }, 5000);
+    })
+
+    pause.addEventListener('click', function() {
+        video.pause();
+        updateIcons();
+        message.style.opacity = '1';
+        message.style.display = 'block';
+    })
 
     video.addEventListener('click', function() {
         if (video.paused) {
             video.play();
+            message.style.opacity = '0';
+            setTimeout(function() {
+                message.style.display = 'none';
+            }, 5000);
         } else {
             video.pause();
+            message.style.opacity = '1';
+            message.style.display = 'block';
         }
         updateIcons();
     })
@@ -41,14 +67,39 @@
     video.addEventListener('mousemove', function(event) {
         const width = window.innerWidth;
         const mousePos = event.clientX;
-        const value = mousePos / width;
+        value = mousePos / width;
 
         video.playbackRate = mousePos / 300 + 0.25;
 
-        if (event.clientX <= width) {
-            console.log(value);
+        if (filterMode === 0) {
             video.style.filter = `hue-rotate(${value * 360}deg)`;
+        } else if (filterMode === 1) {
+            video.style.filter = `grayscale(${value})`;
+        } else if (filterMode === 2) {
+            video.style.filter = `contrast(${1 + value})`;
+        } else if (filterMode === 3) {
+            video.style.filter = `brightness(${0.5 + value})`;
         }
+    })
+
+    filterBtn.addEventListener('click', function() {
+        if (filterMode === 0) {
+            video.style.filter = `hue-rotate(${value * 360}deg)`;
+            filterMode = 1;
+            filtertext.textContent = 'Grayscale';
+        } else if (filterMode === 1) {
+            video.style.filter = `grayscale(${value})`;
+            filterMode = 2;
+            filtertext.textContent = 'Contrast';
+        } else if (filterMode === 2) {
+            video.style.filter = `contrast(${1 + value})`;
+            filterMode = 3;
+            filtertext.textContent = 'Brightness';
+        } else if (filterMode === 3) {
+            video.style.filter = `brightness(${1 + value})`;
+            filterMode = 0;
+            filtertext.textContent = 'Hue Rotate';
+        } 
     })
 
 })();
