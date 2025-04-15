@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockbuster Video!</title>
+
+    <!-- NORMALIZE -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+
+    <!-- PRELOAD -->
+    <link rel="preload" href="media/water.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="media/water.webm" as="video" type="video/webm">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- YOUNG SERIF -->
+        <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
+        <!-- MPLUS ROUNDED 1C -->
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- LINKED -->
+    <link href="styles.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <div id="color"></div>
+    
+    <video id="mainVideo" muted loop autoplay playsinline>
+        <source src="media/water.webm" type="video/webm">
+        <source src="media/water.mp4" type="video/mp4">
+
+        <p>Your browser doesn't support HTML5 video. Here is a <a href="media/water.mp4">link to the video</a> instead. </p>
+    </video>
+
+</body>
+
+</html>

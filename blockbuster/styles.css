@@ -1,0 +1,14 @@
+
+
+
+/* #color {
+    background-color: antiquewhite;
+    width: 100vw;
+    height: 100vh;
+} */
+
+#mainVideo {
+    display: block;
+    width: 100%;
+    margin: auto;
+}
