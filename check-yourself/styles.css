@@ -1,0 +1,60 @@
+
+
+
+/* RESETS ------------------------------------------ */
+
+* {
+    box-sizing: border-box;
+}
+  
+h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+  
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+
+/* BACKGROUND ------------------------------------------ */
+
+body {
+    background-color: #F0FFFF;
+    /* position: relative; */
+}
+
+div {
+    background-color: red;
+    width: 100vw;
+    height: 80vh;
+}
+
+h1 {
+    font-family: "Anek Telugu", sans-serif;;
+    text-align: center;
+    margin-top: 2em;
+}
+
+#switch {
+    background: url('images/switch.svg') no-repeat center/contain;
+    position: absolute;
+    bottom: 50px;
+    z-index: -1;
+}
+
+#screen {
+    background-color: #fff;
+    width: 60vw;
+    height: 60vh;
+
+    position: absolute;
+    top: 12%;
+    left:20%;
+}
