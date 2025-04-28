@@ -27,17 +27,10 @@ img {
 
 body {
     background-color: #F0FFFF;
-    /* position: relative; */
-}
-
-div {
-    background-color: red;
-    width: 100vw;
-    height: 80vh;
+    font-family: "Anek Telugu", sans-serif;
 }
 
 h1 {
-    font-family: "Anek Telugu", sans-serif;;
     text-align: center;
     margin-top: 2em;
 }
@@ -47,6 +40,8 @@ h1 {
     position: absolute;
     bottom: 50px;
     z-index: -1;
+    width: 100vw;
+    height: 80vh;
 }
 
 #screen {
@@ -54,7 +49,59 @@ h1 {
     width: 60vw;
     height: 60vh;
 
-    position: absolute;
+    position: relative;
     top: 12%;
     left:20%;
+    overflow: hidden;
+}
+
+
+/* TOP BAR ------------------------------------------ */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: absolute;
+    left: 10px;
+    right: 50px;
+    margin: 2em;
+}
+
+#profiles {
+    display: flex;
+    gap: 10px;
+}
+
+.account {
+    background-color: gray;
+    border-radius: 20em;
+    width: 40px;
+    height: 40px;
+}
+
+#month-name {
+    font-size: 2em;
+    position: absolute;
+    top: 15%;
+    left: 45%;
+    transition: translateX(-50%);
+}
+
+
+/* GAMES ------------------------------------------ */
+
+#games {
+    position: absolute;
+    top: 35%;
+    left: 8%;
+    display: flex;
+    gap: 10px;
+}
+
+.month {
+    background-color: gray;
+    width: 12em;
+    height: 12em;
 }
