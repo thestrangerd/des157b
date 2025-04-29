@@ -1,62 +1,74 @@
 [
     {
-        "month": "1",
-        "games": "2",
+        "month": 1,
+        "games": 2,
         "title": "Wheel of Fortune",
-        "hours": "5"
+        "hours": 5
     },
     {
-        "month": "2",
-        "games": "11",
+        "month": 2,
+        "games": 11,
         "title": "Vampire Survivors",
-        "hours": "80"
+        "hours": 80
     },
     {
-        "month": "3",
-        "games": "8",
+        "month": 3,
+        "games": 8,
         "title": "Vampire Survivors",
-        "hours": "30"
+        "hours": 30
     },
     {
-        "month": "4",
-        "games": "16",
+        "month": 4,
+        "games": 16,
         "title": "Murder by Numbers",
-        "hours": "65"
+        "hours": 65
     },
     {
-        "month": "5",
-        "games": "7",
+        "month": 5,
+        "games": 7,
         "title": "The Great Ace Attorney Chronicles",
-        "hours": "30"
+        "hours": 30
     },
     {
-        "month": "6",
-        "games": "22",
+        "month": 6,
+        "games": 22,
         "title": "Rune Factory 4",
-        "hours": "30"
+        "hours": 30
     },
     {
-        "month": "8",
-        "games": "6",
+        "month": 7,
+        "games": 0,
+        "title": "None",
+        "hours": 0
+    },
+    {
+        "month": 8,
+        "games": 6,
         "title": "West of Loathing",
-        "hours": "7"
+        "hours": 7
     },
     {
-        "month": "9",
-        "games": "3",
+        "month": 9,
+        "games": 3,
         "title": "The Great Ace Attorney Chronicles",
-        "hours": "5"
+        "hours": 5
     },
     {
-        "month": "10",
-        "games": "3",
+        "month": 10,
+        "games": 3,
         "title": "The Great Ace Attorney Chronicles",
-        "hours": "15"
+        "hours": 15
     },
     {
-        "month": "11",
-        "games": "1",
+        "month": 11,
+        "games": 1,
         "title": "Mario Kart 8",
-        "hours": "1"
+        "hours": 1
+    },
+    {
+        "month": 12,
+        "games": 0,
+        "title": "None",
+        "hours": 0
     }
 ]

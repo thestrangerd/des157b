@@ -75,7 +75,7 @@ header {
 
 #profiles {
     display: flex;
-    gap: 10px;
+    gap: 20px;
 }
 
 .account {
@@ -89,8 +89,8 @@ header {
     font-size: 2em;
     position: absolute;
     top: 15%;
-    left: 45%;
-    transition: translateX(-50%);
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 
@@ -105,6 +105,7 @@ header {
     gap: 10px;
 
     overflow-x: auto;
+    overflow-y: visible;
     white-space: nowrap;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -119,6 +120,7 @@ header {
     width: 12em;
     height: 12em;
     flex: 0 0 auto;
+    position: relative;
 }
 
 .month:last-child {
@@ -127,4 +129,25 @@ header {
 
 .month:hover {
     border: #44b8ea 4px solid;
+}
+
+.hours {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
+
+.month:hover .hours {
+    transform: translateY(-150%);
+    opacity: 1;
+}
+
+#game-name {
+    position: absolute;
+    bottom: 6%;
+    left: 50%;
+    transform: translateX(-50%);
 }
