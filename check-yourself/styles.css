@@ -99,10 +99,11 @@ header {
 
 #games {
     position: relative;
-    top: 35%;
+    top: 33%;
     left: 2%;
     display: flex;
     gap: 10px;
+    height: 100%;
 
     overflow-x: auto;
     overflow-y: visible;
@@ -133,15 +134,17 @@ header {
 
 .hours {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 50%;
-    transform: translateX(-50%, -50%);
+    transform: translate(-50%, 0);
+    z-index: 100;
     opacity: 0;
+    pointer-events: none;
     transition: all 0.3s ease-out;
 }
 
 .month:hover .hours {
-    transform: translateY(-150%);
+    transform: translate(-50%, -50%);
     opacity: 1;
 }
 
