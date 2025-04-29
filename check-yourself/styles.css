@@ -38,6 +38,23 @@ h1 {
     margin-top: 2em;
 }
 
+#home {
+    font-size: 1.5rem;
+    z-index: 2;
+    top: 30px;
+    left: 30px;
+    transition: transform 0.3s ease;
+}
+
+#home:hover {transform: scale(1.2);}
+
+.fa-solid {
+    color: black;
+    position: absolute;
+    cursor: pointer;
+    pointer-events: all;
+}
+
 #switch {
     background: url('images/switch.svg') no-repeat center/contain;
     position: absolute;
@@ -97,6 +114,20 @@ header {
 
 /* GAMES ------------------------------------------ */
 
+#jan {background: url(images/wheel.jpg) no-repeat center/contain}
+#feb {background: url(images/vampire.jpg) no-repeat center/contain}
+#mar {background: url(images/vampire.jpg) no-repeat center/contain}
+#apr {background: url(images/murder.jpg) no-repeat center/contain}
+#may {background: url(images/ace.jpg) no-repeat center/contain}
+#jun {background: url(images/rune.jpg) no-repeat center/contain}
+#jul {background-color: white;}
+#aug {background: url(images/west.jpg) no-repeat center/contain}
+#sep {background: url(images/ace.jpg) no-repeat center/contain}
+#oct {background: url(images/ace.jpg) no-repeat center/contain}
+#nov {background: url(images/mario.jpg) no-repeat center/contain}
+#dec {background-color: white}
+
+
 #games {
     position: relative;
     top: 33%;
@@ -106,7 +137,6 @@ header {
     height: 100%;
 
     overflow-x: auto;
-    overflow-y: visible;
     white-space: nowrap;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -118,10 +148,12 @@ header {
 
 .month {
     background-color: gray;
+    border: gray 2px solid;
     width: 12em;
     height: 12em;
     flex: 0 0 auto;
     position: relative;
+    overflow: hidden;
 }
 
 .month:last-child {
@@ -133,18 +165,25 @@ header {
 }
 
 .hours {
+    background-color: gray;
+    color: white;
+    font-size: 0.9rem;
+    border-radius: 50px;
+
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 100;
+    
     opacity: 0;
+    padding: 0.8em 0.5em 0.5em 0.5em;
     pointer-events: none;
     transition: all 0.3s ease-out;
 }
 
 .month:hover .hours {
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -30%);
     opacity: 1;
 }
 
