@@ -1,0 +1,42 @@
+
+
+
+
+/* RESETS ------------------------------------------ */
+
+* {
+    box-sizing: border-box;
+}
+  
+h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+  
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+
+/* BACKGROUND ------------------------------------------ */
+
+header {
+    text-align: center;
+    margin-top: 6em;
+}
+
+h1 {
+    font-family: "Young Serif", serif;
+    font-size: 3rem;
+    margin-bottom: 0.3em;
+}
+
+header p {
+    font-family: "Inter", sans-serif;
+}
