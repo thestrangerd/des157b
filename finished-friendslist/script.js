@@ -10,7 +10,7 @@ Parse.serverURL = "https://parseapi.back4app.com/";
     const addFriendForm = document.querySelector('#add-friend');
     const editFriendForm = document.querySelector('#edit-friend');
     const friendList = document.querySelector('main ol');
-    const inputs = document.querySelectorAll('#add-friend input:`not([type=submit])');
+    const inputs = document.querySelectorAll('#add-friend input:not([type=submit])');
     let thisRecord;
 
 
