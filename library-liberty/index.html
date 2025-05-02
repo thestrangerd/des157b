@@ -20,6 +20,12 @@
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <!-- GRANIM -->
+    <script src="https://cdn.jsdelivr.net/npm/granim@2.0.0/dist/granim.min.js"></script>
+
+    <!-- THREE.JS -->
+
+
     <!-- ANIMATE ON SCROLL -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -31,30 +37,32 @@
 
 <body>
     
-    <header>
-        <h1>Text Message.</h1>
-        <p>Subtitle goes here.</p>
-    </header>
-    
-    <main>
-        <div>Content 1</div>
-        <div>Content 2</div>
-        <div>Content 3</div>
-        <div>Content 4</div>
-        <div>Content 5</div>
-        <div>Content 6</div>
-        <div>Content 7</div>
-        <div>Content 8</div>
-        <div>Content 9</div>
-        <div>Content 10</div>
-    </main>
-    
-    <footer>
-        <p>Animate on Scroll</p>
-        <p>Granim</p>
-        <p>Three.js</p>
-    </footer>
+        <header>
+            <h1>Text Message.</h1>
+            <p>Subtitle goes here.</p>
+        </header>
+        
+        <main>
+            <div data-aos="fade-up">Content 1</div>
+            <div>Content 2</div>
+            <div>Content 3</div>
+            <div>Content 4</div>
+            <div>Content 5</div>
+            <div>Content 6</div>
+            <div>Content 7</div>
+            <div data-aos="fade-up">Content 8</div>
+            <div>Content 9</div>
+            <div>Content 10</div>
+        </main>
+        
+        <footer>
+            <p>Animate on Scroll</p>
+            <p>Granim</p>
+            <p>Three.js</p>
+        </footer>
 
+        <canvas id="canvas"></canvas>
 </body>
+
 
 </html>
