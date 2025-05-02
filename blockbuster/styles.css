@@ -46,13 +46,6 @@
     pointer-events: none;
 }
 
-.fa-solid {
-    color: white;
-    position: absolute;
-    cursor: pointer;
-    pointer-events: all;
-}
-
 #play, #pause {
     font-size: 3rem;
     display: none;
@@ -73,13 +66,19 @@
     display: inline-block;
     z-index: 2;
     top: 30px;
+    left: 30px;
     transition: transform 0.3s ease;
 }
-
-#home {left: 30px;}
 #filter {right: 30px;}
 
 #home:hover, #filter:hover {transform: scale(1.2);}
+
+.fa-solid {
+    color: white;
+    position: absolute;
+    cursor: pointer;
+    pointer-events: all;
+}
 
 #filtertext {
     color: white;

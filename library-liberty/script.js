@@ -12,9 +12,9 @@ AOS.init();
         states : {
             "default-state": {
                 gradients: [
-                    ['#ff9966', '#ff5e62'],
-                    ['#00F260', '#0575E6'],
-                    ['#e1eec3', '#f05053']
+                    ['#18A0FB', '#ff5e62'], // blue pink
+                    ['#00F260', '#907CFF'], // green purple
+                    ['#907CFF', '#18A0FB' ] // purple blue
                 ]
             }
         }
