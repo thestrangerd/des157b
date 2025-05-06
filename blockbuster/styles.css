@@ -1,6 +1,10 @@
 
 
 
+body {
+    overflow: hidden;
+}
+
 #mainVideo {
     display: block;
     width: 100%;
@@ -66,11 +70,11 @@
     display: inline-block;
     z-index: 2;
     top: 30px;
-    left: 30px;
     transition: transform 0.3s ease;
 }
-#filter {right: 30px;}
 
+#filter {right: 30px;}
+#home {left: 30px;}
 #home:hover, #filter:hover {transform: scale(1.2);}
 
 .fa-solid {
