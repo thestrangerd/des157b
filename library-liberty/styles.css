@@ -124,9 +124,49 @@ main p {
 
 #message1 { margin-top: 25em; }
 #message3 { margin: 30em 1em; }
-#message4 { margin-top: 20em; }
-#message6 { margin-top: 10em; }
-#message8 { margin: 10em 1em; }
-#message9 { margin: 60em 1em; }
-#message10 { margin: 20em 1em; }
-#message12 { margin-top`: 10em; }
+#message6 { margin-top: 20em; }
+#message9 { margin: 20em 1em; }
+#message10 { margin-top: 10em; }
+#message12 { margin-top: 10em; }
+#message13 { margin: 20em 1em; }
+#message15 { margin: 100em 1em; }
+#message17 { margin: 60em 1em; }
+#message19 { margin: 120em 1em 20em; }
+
+
+/* FOOTER ------------------------------------------ */
+
+footer {
+    color: white;
+    display: flex;
+    /* justify-content: center; */
+    gap: 30px;
+    margin: 0 0 2em 2em;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    padding-bottom: 0.3em;
+    transition: font-weight 0.3s ease-in-out;
+}
+
+a:hover {
+    font-weight: 600;
+    transform: scale(1.01);
+}
+
+a::after {
+    background-color: white;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    transition: width 0.3s ease-out;
+}
+
+a:hover::after {
+    width: 100%;
+}
