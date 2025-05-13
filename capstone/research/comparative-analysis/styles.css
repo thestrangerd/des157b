@@ -1,0 +1,132 @@
+
+
+
+/* RESETS ------------------------------------------ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFF7F7;
+    font-family: "Alexandria", serif;
+    font-size: 1rem;
+}
+
+main {
+    display: flex;
+    gap: 40px;
+    margin: 11em 3em 2em 3em ;
+}
+  
+h1, h2, p {
+    color: #24292D;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    font-family: "Young Serif", serif;
+}
+
+p {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+}
+  
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    padding: 0 1em 2em 1em;
+}
+
+
+
+
+
+/* HEADER ------------------------------------------ */
+
+header {
+    background-color: #FFF7F7;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100vw;
+}
+
+h1 {
+    color: #332E2E;
+    font-size: 3rem;
+    text-align: center;
+    padding: 1.2em 0 1em 0;
+    transition: color 0.5s ease;
+}
+
+#home {
+    font-size: 1.5rem;
+    display: inline-block;
+    z-index: 2;
+    top: 30px;
+    left: 30px;
+    transition: transform 0.3s ease;
+}
+
+#home:hover {transform: scale(1.2);}
+
+.fa-solid {
+    color: #332E2E;
+    position: absolute;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+
+
+
+
+/* TEXT ------------------------------------------ */
+
+section {
+    flex: 1;
+}
+
+.box {
+    background-color: white;
+    border: 2px solid #332E2E;
+    border-radius: 20px;
+    padding: 2em;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 0.5em 0 0.5em 1em;
+}
+
+.text {
+    line-height: 1.5rem;
+    margin: 0 2em;
+    margin-bottom: 1.5em;
+}
+
+a {
+    color: #24292D;
+    transition: font-weight 0.1s ease-in-out;
+}
+
+a:hover {
+    font-weight: 700;
+}
+
+
+
+
+
+/* FOOTER ------------------------------------------ */
+
+/* footer {
+    background-color: #FFF7F7;
+    width: 100vw;
+    height: 200px;
+    position: relative;
+    bottom: 0;
+} */
