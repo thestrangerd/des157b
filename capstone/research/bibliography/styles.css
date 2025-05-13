@@ -1,0 +1,144 @@
+
+
+
+/* UNIVERSAL PROPERTIES ------------------------------------------ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFF7F2;
+    font-size: 1rem;
+}
+
+main {
+    max-width: 1200px;
+    min-width: 800px;
+    margin: 0 auto;
+}
+  
+h1, h2, p {
+    color: #332E2E;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    font-family: 'Young Serif', 'serif';
+}
+
+p {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+}
+  
+img {
+    display: block;
+    height: auto;
+    width: 90%;
+    max-width: 100%;
+    margin: 0 auto 1.7em auto;
+}
+
+
+
+
+
+/* HEADER ------------------------------------------ */
+
+header {
+    background-color: #FFF7F2;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+h1 {
+    color: #332E2E;
+    font-size: 3rem;
+    text-align: center;
+    padding: 1.2em 0 1em 0;
+}
+
+#home {
+    font-size: 1.5rem;
+    display: inline-block;
+    z-index: 2;
+    top: 30px;
+    left: 30px;
+    transition: transform 0.3s ease;
+}
+
+#home:hover {transform: scale(1.2);}
+
+.fa-solid {
+    color: #332E2E;
+    position: absolute;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+
+
+
+/* JOURNALS ------------------------------------------ */
+
+.box {
+    background-color: white;
+    border: 2px solid #332E2E;
+    border-radius: 20px;
+    margin: 2em 12em;
+    padding: 3em;
+}
+
+h2 {
+    font-size: 1.7rem;
+    margin: 0.5em 0 0.3em 1em;
+}
+
+.author {
+    font-size: 1rem;
+    margin-left: 1.7em;
+    margin-bottom: 2em;
+}
+
+.text {
+    line-height: 1.5rem;
+    margin: 0 2em;
+    margin-bottom: 1.5em;
+}
+
+.citation {
+    font-size: 0.9em;
+    border-bottom: 1px solid #332E2E;
+    line-height: 1.2rem;
+    margin: 0 2em;
+    padding-bottom: 2em;
+    margin-bottom: 1.5em;
+}
+
+span {
+    font-weight: 700;
+}
+
+a {
+    color: #24292D;
+    transition: font-weight 0.1s ease-in-out;
+}
+
+a:hover {
+    font-weight: 700;
+}
+
+
+
+/* FOOTER ------------------------------------------ */
+
+footer {
+    background-color: #FFF7F2;
+
+    position: sticky;
+    bottom: 0;
+    padding: 0 3em 3em 3em;
+}
+
