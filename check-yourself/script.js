@@ -14,8 +14,8 @@
         const content = await data.json();
 
         monthTitle(content);
-        gameTitle(content);
         playTime(content);
+        gameTitle(content);``
     }
 
     
@@ -35,23 +35,23 @@
     }
 
 
-    function gameTitle(content) {
-        for (let i = 0; i < gameContainer.length; i++) {
-            const title = content[i].title;
-
-            gameContainer[i].addEventListener('mouseenter', function() {
-                gameName.textContent = `Most Played: ${title}`;
-            })
-        }
-    }
-
-
     function playTime(content) {
         for (let i = 0; i < gameContainer.length; i++) {
             const hours = content[i].hours;
 
             gameContainer[i].addEventListener('mouseenter', function() {
                 hoursPlayed[i].textContent = `Hours Played: ${hours}`;
+            })
+        }
+    }
+
+
+    function gameTitle(content) {
+        for (let i = 0; i < gameContainer.length; i++) {
+            const title = content[i].title;
+
+            gameContainer[i].addEventListener('mouseenter', function() {
+                gameName.textContent = `Most Played: ${title}`;
             })
         }
     }
