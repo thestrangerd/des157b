@@ -15,7 +15,7 @@
 
         monthTitle(content);
         playTime(content);
-        gameTitle(content);``
+        gameTitle(content);
     }
 
     
