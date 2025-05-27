@@ -42,6 +42,20 @@ body {
     overflow: hidden;
 }
 
+.vignette-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+  
+    background: radial-gradient(ellipse at center, 
+      rgba(0,0,0,0) 60%, 
+      rgba(0,0,0,0.4) 100%);
+  }
+  
+
 h1 {
     font-weight: 700;
     font-size: 6rem;
@@ -136,8 +150,8 @@ h1 {
 /* GAME ------------------------------------------ */
 
 #judgment {
-    background-color: #0b1620; 
-    border-radius: 15px;
+    background-color: #FFF8EB; 
+    border-radius: 10px;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -207,9 +221,7 @@ h1 {
     background-color: #FFF8EB;
     width: 100%;
     height: 30px;
-    position: absolute;
-    user-select: none;
-    touch-action: none;
+    position: fixed;
 }
 
 #window button {
@@ -220,15 +232,23 @@ h1 {
 }
 
 h2 {
-    color: #FFF8EB;
+    color: black;
     font-size: 12rem;
     position: absolute;
     top: 25%; left: 50%;
     transform: translate(-50%, -50%);
 }
 
-#window p {
+#judgment p {
     color: #FFF8EB;
     text-align: center;
     width: 50%;
+}
+
+.text {
+    color: black;
+    font-family: "Inter", sans-serif;
+    line-height: 1.5rem;
+    margin: 0 2em;
+    margin-bottom: 1.5em;
 }
