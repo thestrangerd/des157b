@@ -8,7 +8,12 @@
     const startup = document.querySelector('#startup');
     bgAudio.volume = 0.2;
 
-    const gameIcon = document.querySelector('#desktop-icon');
+    // ICONS
+    const judgmentIcon = document.querySelector('#game-open');
+    const settingsIcon = document.querySelector('#settings');
+    const creditsIcon = document.querySelector('#credits');
+
+    // GAME SCREEN
     const gamescreen = document.querySelector('#judgment');
     const loadingScreen = document.querySelector('#loading-screen');
     const closeWindow = document.querySelector('#window button');
@@ -29,9 +34,9 @@
     updateClock();
 
 
+
     // AUDIO
-    window.addEventListener('load', function(){
-        startup.play();
+    window.addEventListener('load', function(){ startup.play();
     });
     
     window.addEventListener('click', function(){
@@ -41,10 +46,16 @@
     window.addEventListener('mousedown', function() {
         mouseclick.play();
     });
+
+    
+    // SETTINGS
+    settingsIcon.addEventListener('click', function() {
+
+    })
     
 
     // GAMESCREEN
-    gameIcon.addEventListener('click', () => {
+    judgmentIcon.addEventListener('click', function() {
         loadingScreen.classList.add('active');
       
         setTimeout(() => {

@@ -48,13 +48,12 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1000;
+    z-index: 100;
   
     background: radial-gradient(ellipse at center, 
       rgba(0,0,0,0) 60%, 
       rgba(0,0,0,0.4) 100%);
-  }
-  
+}
 
 h1 {
     font-weight: 700;
@@ -62,6 +61,7 @@ h1 {
     position: absolute;
     top: 45%; left: 50%;
     pointer-events: none;
+    user-select: none;
     transform: translate(-50%, -50%);
 }
 
@@ -71,41 +71,52 @@ h1 {
     height: 100vh;
     background-color: #FFF8EB;
     overflow: hidden;
-    
 }
 
-/* ICON ----- */
 
-#desktop-icon {
+/* ICONS ----- */
+
+.desktop-icon {
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    color: white;
-    cursor: pointer;
-
     position: absolute;
-    top: 30px; left: 30px;
+    cursor: pointer;
 }
 
-#icon {
-    background: url(images/icon.svg) center/contain no-repeat;
-    width: 3em; 
-    height: 3em;
-}
-
-#desktop-icon img {
-    width: 3em; height: 3em;
-    display: block;
-    margin: auto;
-}
-
-#desktop-icon p {
+.desktop-icon p {
     color: #1E2F3F;
     font-size: 0.9rem;
     font-weight: 500;
     margin-top: 0.5em;
 }
+
+#judgment-icon {background: url(images/judgment.svg) center/contain no-repeat;}
+#settings-icon {background: url(images/settings.svg) center/contain no-repeat;}
+#credit-icon {background: url(images/credit.svg) center/contain no-repeat;}
+
+.icon {
+    width: 3em; 
+    height: 3em;
+}
+
+#game-open { top: 30px; left: 30px; }
+#settings { top: 30px; right: 35px; }
+#credits { top: 130px; right: 40px; }
+
+
+/* SETTINGS ----- */
+
+.overlay {
+    background-color: red;
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    display: none;
+}
+
+
 
 /* FOOTER ----- */
 
@@ -239,16 +250,13 @@ h2 {
     transform: translate(-50%, -50%);
 }
 
-#judgment p {
-    color: #FFF8EB;
-    text-align: center;
-    width: 50%;
-}
-
 .text {
     color: black;
     font-family: "Inter", sans-serif;
-    line-height: 1.5rem;
-    margin: 0 2em;
-    margin-bottom: 1.5em;
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
 }
