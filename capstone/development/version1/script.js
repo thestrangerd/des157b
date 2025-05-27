@@ -44,17 +44,15 @@
     
 
     // GAMESCREEN
-    gameIcon.addEventListener('click', function() {
+    gameIcon.addEventListener('click', () => {
         loadingScreen.classList.add('active');
+      
+        setTimeout(() => {
+          loadingScreen.classList.remove('active');
+        }, 2500);
 
-        setTimeout(function(){
-            gamescreen.classList.add('hidden');
-            loadingScreen.classList.remove('active');
-        }, 1500);  
-
-        
         gamescreen.classList.add('visible');
-    })
+      });
 
     closeWindow.addEventListener('click', function() {
         gamescreen.classList.remove('visible');

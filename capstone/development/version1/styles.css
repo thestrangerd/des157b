@@ -113,7 +113,7 @@ h1 {
 
 #home {
     font-size: 1.3rem;
-    z-index: 2;
+    z-index: 999;
     transition: transform 0.3s ease;
 }
 
@@ -136,7 +136,7 @@ h1 {
 /* GAME ------------------------------------------ */
 
 #judgment {
-    background-color: #FFF8EB;
+    background-color: #0b1620; 
     border-radius: 15px;
     width: 100vw;
     height: 100vh;
@@ -150,6 +150,7 @@ h1 {
     z-index: 100;
 
     opacity: 0;
+    transition: opacity 1s ease-in;
 }
 
 #judgment.visible {
@@ -171,7 +172,7 @@ h1 {
 
     position: fixed;
     top: 0; left: 0;
-    z-index: 999;
+    z-index: 99;
 
     display: flex;
     justify-content: center;
@@ -182,18 +183,28 @@ h1 {
     
     opacity: 0;
     pointer-events: none;
-    transition: opacity 5s ease;
   }
   
-  #loading-screen.active {
+#loading-screen.active {
     opacity: 1;
     pointer-events: all;
-  }
+}
+
+#loading-screen p {
+    font-size: 1rem;
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.08);}
+    100% {transform: scale(1);}
+}
   
 /* GAME WINDOW ----- */
 
 #window {
-    background-color: #1E2F3F;
+    background-color: #FFF8EB;
     width: 100%;
     height: 30px;
     position: absolute;
@@ -209,6 +220,7 @@ h1 {
 }
 
 h2 {
+    color: #FFF8EB;
     font-size: 12rem;
     position: absolute;
     top: 25%; left: 50%;
@@ -216,7 +228,7 @@ h2 {
 }
 
 #window p {
-    color: black;
+    color: #FFF8EB;
     text-align: center;
     width: 50%;
 }
