@@ -46,8 +46,7 @@ h1 {
     font-weight: 700;
     font-size: 6rem;
     position: absolute;
-    top: 45%;
-    left: 50%;
+    top: 45%; left: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
 }
@@ -72,19 +71,17 @@ h1 {
     cursor: pointer;
 
     position: absolute;
-    top: 30px;
-    left: 30px;
+    top: 30px; left: 30px;
 }
 
 #icon {
     background: url(images/icon.svg) center/contain no-repeat;
-    width: 3em;
+    width: 3em; 
     height: 3em;
 }
 
 #desktop-icon img {
-    width: 3em;
-    height: 3em;
+    width: 3em; height: 3em;
     display: block;
     margin: auto;
 }
@@ -99,16 +96,19 @@ h1 {
 /* FOOTER ----- */
 
 #taskbar {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-    background: #1E2F3F;
+    background-color: #1E2F3F;
     color: white;
+
     display: flex;
     align-items: center;
-    padding: 0 20px;
     justify-content: space-between;
+
+    position: absolute;
+    bottom: 0;
+    
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
 }
 
 #home {
@@ -136,21 +136,87 @@ h1 {
 /* GAME ------------------------------------------ */
 
 #judgment {
-    background-color: red;
+    background-color: #FFF8EB;
+    border-radius: 15px;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     pointer-events: none;
 
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 100;
 
     opacity: 0;
-    transition: opacity 1s ease-in-out;
 }
 
 #judgment.visible {
     opacity: 1;
     pointer-events: all;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* LOADING SCREEN ----- */
+
+#loading-screen {
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 5s ease;
+  }
+  
+  #loading-screen.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+/* GAME WINDOW ----- */
+
+#window {
+    background-color: #1E2F3F;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    user-select: none;
+    touch-action: none;
+}
+
+#window button {
+    background-color: #FF5F57;
+    border: none;
+    width: 40px;
+    height: 100%;
+}
+
+h2 {
+    font-size: 12rem;
+    position: absolute;
+    top: 25%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#window p {
+    color: black;
+    text-align: center;
+    width: 50%;
 }

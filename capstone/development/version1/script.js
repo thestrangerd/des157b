@@ -10,6 +10,8 @@
 
     const gameIcon = document.querySelector('#desktop-icon');
     const gamescreen = document.querySelector('#judgment');
+    const loadingScreen = document.querySelector('#loading-screen');
+    const closeWindow = document.querySelector('#window button');
 
 
     // REAL-TIME CLOCK
@@ -43,8 +45,19 @@
 
     // GAMESCREEN
     gameIcon.addEventListener('click', function() {
+        loadingScreen.classList.add('active');
+
+        setTimeout(function(){
+            gamescreen.classList.add('hidden');
+            loadingScreen.classList.remove('active');
+        }, 1500);  
+
+        
         gamescreen.classList.add('visible');
-        console.log('hey this works!');
+    })
+
+    closeWindow.addEventListener('click', function() {
+        gamescreen.classList.remove('visible');
     })
 
 
