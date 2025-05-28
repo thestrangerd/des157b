@@ -33,32 +33,59 @@
     <body>
 
         <!-- AUDIO -->
-        <!-- <audio id="startup" src="images/startup.mp3"></audio> -->
+        <audio id="startup" src="images/startup.mp3"></audio>
         <audio id="bg-audio" src="images/bgAudio.mp3" autoplay loop></audio>
         <audio id="mouseclick" src="images/mouseclick.wav"></audio>
+        <audio id="loading-audio" src="images/loading.mp3"></audio>
 
 
         <!-- DESKTOP -->
-        <div class="vignette-overlay"></div>
-
         <section id="screen">
             <h1>JUDGMENT</h1>
 
+            <!-- open game -->
             <div id="game-open" class="desktop-icon">
                 <div id="judgment-icon" class="icon"></div>
                 <p>JUDGMENT</p>
             </div>
 
+            <!-- settings -->
             <div id="settings" class="desktop-icon">
                 <div id="settings-icon" class="icon"></div>
                 <p>SETTINGS</p>
             </div>
 
+            <div id="settings-overlay" class="overlay draggable">
+                <div class="title-row">
+                    <button id="close-settings">x</button>
+                    <h3>SETTING(S)</h3>
+                </div>
+
+                <div class="settings-row">
+                    <label for="audio-toggle">Audio</label>
+                    <input type="checkbox" id="audio-toggle" checked>
+                </div>
+            </div>
+
+            <!-- credits -->
             <div id="credits" class="desktop-icon">
                 <div id="credit-icon" class="icon"></div>
                 <p>CREDITS</p>
             </div>
+
+            <div id="credits-overlay" class="overlay draggable">
+                <div class="title-row">
+                    <button id="close-settings">x</button>
+                    <h3>SETTING(S)</h3>
+                </div>
+
+                <div class="settings-row">
+                    <label for="audio-toggle">Audio</label>
+                    <input type="checkbox" id="audio-toggle" checked>
+                </div>
+            </div>
     
+            <!-- footer -->
             <footer id="taskbar">
                 <a href="../../../index.html">
                     <i id="home" class="fa-solid fa-house"></i>
@@ -69,25 +96,48 @@
 
 
         <!-- GAME -->
-        <section id="judgment" class="draggable resizable">
+        <section id="judgment">
 
+            <!-- loading -->
             <div id="loading-screen">
                 <p>Loading JUDGMENT...</p>
             </div>
 
+            <!-- game window -->
             <div id="window">
                 <button>x</button>
             </div>
 
-            <h2>JUDGMENT</h2>
-            <p class="text">
-                Welcome! You have been hand-selected to participate in 
-                <strong>JUDGMENT</strong>. Your task is to train our upcoming AI model. 
+            <!-- intro message -->
+            <article>
+                <h2>JUDGMENT</h2>
+                <div id="intro-text">
+                    <p class="text">
+                        Welcome! You have been selected to participate in 
+                        <strong>JUDGMENT</strong>, an AI training program designed to teach our judicial model, JUDY, how humans make complex moral decisions. Our goal is to train JUDY to automate the judicial system and replace all judges within the next 20 years.
+                    </p>
+        
+                    <p class="text">
+                        This program consists of 10 moral decisions. Each decision you make will shape how JUDY interprets real cases as the judge. Please take your time to think over each question carefully. Once you move onto the next question, you cannot go back. <strong>Remember: your answers will affect many lives</strong>.
+                    </p>
+    
+                    <button id="start-game">Start Simulation</button>
+                </div>
+            </article>
+            
+            <!-- questions -->
+            <article id="question1" class="question">
+                <h2>hi there</h2>
+                <p>i am a question 1</p>
+            </article>
 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quasi soluta beatae laborum minima iusto suscipit dolore? Dolorem expedita maiores, rerum, temporibus tempore repellendus, minus ratione magnam ullam quidem velit!
-            </p>
+            <article id="question2" class="question">
+                <h2>hi there</h2>
+                <p>i am a question 2</p>
+            </article>
 
         </section>
 
+        <div class="vignette-overlay"></div>
     </body>
 </html>
