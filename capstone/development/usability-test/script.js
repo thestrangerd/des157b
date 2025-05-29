@@ -8,7 +8,8 @@
     const mouseclick = document.querySelector('#mouseclick');
     const startup = document.querySelector('#startup');
     const loadingAudio = document.querySelector('#loading-audio');
-    bgAudio.volume = 0.2;
+    const buttonAudio = document.querySelector('#button-audio');
+    bgAudio.volume = 0.3;
 
     // ICONS
     const judgmentIcon = document.querySelector('#game-open');
@@ -23,7 +24,6 @@
     const creditsOverlay = document.querySelector('#credits-overlay');
     const closeCredits = document.querySelector('#close-credits');
     
-
     // GAME SCREEN
     const gamescreen = document.querySelector('#judgment');
     const loadingScreen = document.querySelector('#loading-screen');
@@ -63,6 +63,13 @@
         if (event.key === 't' || event.key === 'T') {
             alert('You have been selected to train JUDI, our new judicial AI model.\n\nPlease complete the following three tasks:\n1. Mute white noise (can choose to keep on afterwards)\n2. Discover one library used to make this project.\n3. Start the simulation.\n\nPress "t" to reopen this alert at any time.')
         }
+    })
+
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', function(){
+            buttonAudio.currentTime = 0;
+            buttonAudio.play();
+        })
     })
 
     
