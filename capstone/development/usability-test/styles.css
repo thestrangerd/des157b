@@ -172,11 +172,19 @@ h1 {
 }
 
 .credits-row {
-    font-size: 1.1rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.7em;
+    margin: 0.5em 0 0.7em 1em;
+}
+
+.credits-row a {
+    font-size: 1rem;
+    color: #FFF8EB; 
+    transition: font-weight 0.5s ease;
+}
+
+.credits-row a:hover {
+    font-weight: 700;
 }
 
 
