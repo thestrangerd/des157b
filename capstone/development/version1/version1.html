@@ -62,8 +62,13 @@
                 </div>
 
                 <div class="settings-row">
-                    <label for="audio-toggle">Audio</label>
+                    <label for="audio-toggle">All Audio</label>
                     <input type="checkbox" id="audio-toggle" checked>
+                </div>
+
+                <div class="settings-row">
+                    <label for="white-noise">White Noise</label>
+                    <input type="checkbox" id="white-noise" checked>
                 </div>
             </div>
 
@@ -75,14 +80,13 @@
 
             <div id="credits-overlay" class="overlay draggable">
                 <div class="title-row">
-                    <button id="close-settings">x</button>
-                    <h3>SETTING(S)</h3>
+                    <button id="close-credits">x</button>
+                    <h3>CREDITS</h3>
                 </div>
+            </div>
 
-                <div class="settings-row">
-                    <label for="audio-toggle">Audio</label>
-                    <input type="checkbox" id="audio-toggle" checked>
-                </div>
+            <div class="credits-row">
+                <p>Hello</p>
             </div>
     
             <!-- footer -->
@@ -114,11 +118,11 @@
                 <div id="intro-text">
                     <p class="text">
                         Welcome! You have been selected to participate in 
-                        <strong>JUDGMENT</strong>, an AI training program designed to teach our judicial model, JUDY, how humans make complex moral decisions. Our goal is to train JUDY to automate the judicial system and replace all judges within the next 20 years.
+                        <strong>JUDGMENT</strong>, an AI training program designed to teach our judge model, JUDI, how humans make complex moral decisions. We aim to automate the judicial system and have JUDI replace all judges within the next twenty years.
                     </p>
         
                     <p class="text">
-                        This program consists of 10 moral decisions. Each decision you make will shape how JUDY interprets real cases as the judge. Please take your time to think over each question carefully. Once you move onto the next question, you cannot go back. <strong>Remember: your answers will affect many lives</strong>.
+                        This program consists of ten moral decisions. Each decision you make will shape how JUDI interprets real cases as a judge. Please take your time to think over each question carefully. Once you move onto the next question, you cannot go back. <strong>Remember: your answers will affect many lives</strong>.
                     </p>
     
                     <button id="start-game">Start Simulation</button>
@@ -127,8 +131,16 @@
             
             <!-- questions -->
             <article id="question1" class="question">
-                <h2>hi there</h2>
+                <p>Question 1</p>
                 <p>i am a question 1</p>
+
+                <div class="decision">
+                    <div>option 1</div>
+                    <div>option 2</div>
+                    <div>option 3</div>
+                </div>
+            
+                <button>next question</button>
             </article>
 
             <article id="question2" class="question">

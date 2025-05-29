@@ -117,13 +117,15 @@ h1 {
     border-radius: 10px;
     box-shadow: -3px 3px 20px #f5e0b7;
     text-align: center; 
+    padding: 1em;
+    display: none;
+}
 
+#settings-overlay {
     position: fixed;
     top: 30px; right: 150px;
     width: 12em;
-    height: 8em;
-    padding: 1em;
-    display: none;
+    height: 10em;
 }
 
 .settings-row {
@@ -131,6 +133,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0.7em;
 }
 
 .title-row {
@@ -157,6 +160,27 @@ h1 {
     width: 20px;
     height: 20px;
   }
+
+
+/* CREDITS */
+
+#credits-overlay {
+    position: fixed;
+    top: 230px; right: 30px;
+    width: 19.5em;
+    height: 15em;
+}
+
+.credits-row {
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.7em;
+}
+
+
+
 
 
 
@@ -239,7 +263,7 @@ h1 {
 
     position: fixed;
     top: 0; left: 0;
-    z-index: 99;
+    z-index: 101;
 
     display: flex;
     justify-content: center;
@@ -329,5 +353,10 @@ h2 {
 
 .question.visible {
     opacity: 1;
-    z-index: 2;
+    z-index: 5;
+}
+
+.question p {
+    top: 40%; left: 50%;
+    transform: translate(-50%, -50%);
 }

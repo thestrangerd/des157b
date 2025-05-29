@@ -12,11 +12,17 @@
 
     // ICONS
     const judgmentIcon = document.querySelector('#game-open');
+
     const settingsIcon = document.querySelector('#settings');
     const settingsOverlay = document.querySelector('#settings-overlay');
     const closeSettings = document.querySelector('#close-settings');
     const audioToggle = document.querySelector('#audio-toggle');
+    const whiteNoise = document.querySelector('#white-noise');
+
     const creditsIcon = document.querySelector('#credits');
+    const creditsOverlay = document.querySelector('#credits-overlay');
+    const closeCredits = document.querySelector('#close-credits');
+    
 
     // GAME SCREEN
     const gamescreen = document.querySelector('#judgment');
@@ -29,30 +35,38 @@
     
 
 
-    // REAL-TIME CLOCK
+    // REAL-TIME CLOCK ------------------------------------------------
+    // discovered how to create real-time clock from online resources
     function updateClock() {
-        const now = new Date();
+        const date = new Date();
         const properties = {
           hour: 'numeric',
           minute: 'numeric',
           hour12: true // determines AM/PM
         };
-        const timeString = now.toLocaleTimeString(undefined, properties);
+        const timeString = date.toLocaleTimeString(undefined, properties);
         if (clock) clock.textContent = timeString;
     }
     setInterval(updateClock, 1000);
     updateClock();
 
 
-    // AUDIO
+    // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
         startup.play();
         bgAudio.play();
+        alert('You have been selected to train JUDI, our new judicial AI model.\n\nPlease complete the following three tasks:\n1. Mute white noise (can choose to keep on afterwards)\n2. Discover one library used to make this project.\n3. Start the simulation.\n\nPress "t" to reopen this alert at any time.')
      });
     window.addEventListener('mousedown', function(){ mouseclick.play(); });
 
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 't' || event.key === 'T') {
+            alert('You have been selected to train JUDI, our new judicial AI model.\n\nPlease complete the following three tasks:\n1. Mute white noise (can choose to keep on afterwards)\n2. Discover one library used to make this project.\n3. Start the simulation.\n\nPress "t" to reopen this alert at any time.')
+        }
+    })
+
     
-    // SETTINGS
+    // SETTINGS ------------------------------------------------
     // settings overlay
     settingsIcon.addEventListener('click', function() {
         if (settingsOverlay.style.display === 'block') {
@@ -62,39 +76,56 @@
         }
     })
 
+    // audio toggle
+    audioToggle.addEventListener('change', function () {
+        const audioMute = !audioToggle.checked; // if unchecked, mute everything
+      
+        document.querySelectorAll('audio').forEach(audio => {
+          audio.muted = audioMute;
+        });
+    });
+
+    whiteNoise.addEventListener('change', function () {
+        const bgMute = !whiteNoise.checked;
+        bgAudio.muted = bgMute;
+    });
+
     // close settings
     closeSettings.addEventListener('click', function() {
         settingsOverlay.style.display = 'none';
     });
 
-    // audio toggle
-    audioToggle.addEventListener('change', function () {
-        const isMuted = !audioToggle.checked; // if unchecked, mute everything
-      
-        document.querySelectorAll('audio').forEach(audio => {
-          audio.muted = isMuted;
-        });
-    });
-
-    // whiteNoise.addEventListener('change', function () {
-    //     const isMuted = !audioToggle.checked;
-      
-    //     document.querySelectorAll('audio').forEach(audio => {
-    //       audio.muted = isMuted;
-    //     });
-    // });
 
 
-    // GAMESCREEN
+
+    // CREDITS ------------------------------------------------
+    // credits overlay
+    creditsIcon.addEventListener('click', function() {
+        if (creditsOverlay.style.display === 'block') {
+            creditsOverlay.style.display = 'none';
+        } else {
+            creditsOverlay.style.display = 'block'; 
+        }
+    })
+
+    // close settings
+    closeCredits.addEventListener('click', function() {
+        creditsOverlay.style.display = 'none';
+    })
+
+
+
+    // GAMESCREEN ----------------------------------------------
     judgmentIcon.addEventListener('click', function() {
         loadingScreen.classList.add('active');
+        loadingAudio.currentTime = 0;
         loadingAudio.play();
       
         // loading screen, then moves to gamepage
         setTimeout(() => {
           loadingScreen.classList.remove('active');
           loadingAudio.pause();
-        }, 10);
+        }, 3500);
 
         gamescreen.classList.add('visible');
     });
