@@ -57,7 +57,11 @@
         bgAudio.play();
         alert('You have been selected to train JUDI, our new judicial AI model.\n\nPlease complete the following three tasks:\n1. Mute white noise (can choose to keep on afterwards)\n2. Discover one library used to make this project.\n3. Start the simulation.\n\nPress "t" to reopen this alert at any time.')
      });
-    window.addEventListener('mousedown', function(){ mouseclick.play(); });
+    window.addEventListener('mousedown', function()
+    { 
+        mouseclick.currentTime = 0;
+        mouseclick.play(); 
+    });
 
     document.addEventListener('keydown', function(event) {
         if (event.key === 't' || event.key === 'T') {

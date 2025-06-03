@@ -178,13 +178,24 @@ h1 {
 }
 
 .credits-row a {
-    font-size: 1rem;
     color: #FFF8EB; 
-    transition: font-weight 0.5s ease;
+    font-size: 1rem;
+    position: relative;
 }
 
-.credits-row a:hover {
-    font-weight: 700;
+a::after {
+    background-color: white;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    transition: width 0.3s ease-out;
+}
+
+a:hover::after {
+    width: 100%;
 }
 
 
@@ -249,7 +260,6 @@ h1 {
     z-index: 100;
 
     opacity: 0;
-    /* transition: opacity 1s ease-in; */
 }
 
 #judgment.visible {
@@ -344,7 +354,6 @@ h2 {
 #judgment button {
     font-size: 1.2rem;
     padding-top: 0.3em;
-    /* padding: 1em; */
 }
 
 
