@@ -1,0 +1,431 @@
+
+
+
+/* RESETS ------------------------------------------ */
+
+* {
+    box-sizing: border-box;
+}
+  
+h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+p, a, span {
+    font-size: 0.875rem;
+    text-decoration: none;
+}
+
+h1, h2, h3, p, li, label, button {
+    user-select: none;
+}
+
+ul {
+    list-style-type: none;
+}
+  
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+
+
+
+
+/* PC SCREEN ------------------------------------------ */
+
+body {
+    position: relative;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: "aktiv-grotesk-condensed", sans-serif;
+    overflow: hidden;
+}
+
+.vignette-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+  
+    background: radial-gradient(ellipse at center, 
+      rgba(0,0,0,0) 60%, 
+      rgba(0,0,0,0.4) 100%);
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 6rem;
+    position: absolute;
+    top: 45%; left: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+#screen {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FFF8EB;
+    overflow: hidden;
+}
+
+
+/* ICONS ----- */
+
+.desktop-icon {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    cursor: pointer;
+}
+
+.desktop-icon p {
+    color: #1E2F3F;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 0.5em;
+}
+
+#judgment-icon {background: url(images/judgment.svg) center/contain no-repeat;}
+#settings-icon {background: url(images/settings.svg) center/contain no-repeat;}
+#credit-icon {background: url(images/credit.svg) center/contain no-repeat;}
+
+.icon {
+    width: 3em; 
+    height: 3em;
+}
+
+#game-open { top: 40px; left: 40px; }
+#settings { top: 30px; right: 35px; }
+#credits { top: 130px; right: 38px; }
+
+
+/* SETTINGS ----- */
+
+.overlay {
+    color: #FFF8EB;
+    background-color: #1E2F3F;
+    border-radius: 10px;
+    box-shadow: -1px 1px 5px #888785;
+    text-align: center; 
+    padding: 1em;
+    display: none;
+}
+
+#settings-overlay {
+    position: fixed;
+    top: 30px; right: 150px;
+    width: 12em;
+    height: 10em;
+}
+
+.settings-row {
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.7em;
+}
+
+.title-row {
+    display: flex;
+    justify-content: center;
+}
+
+.title-row button {
+    color:#FFF8EB;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    user-select: none;
+
+    position: absolute;
+    top: 30px; left: 10px;
+}
+
+.settings-row label {
+    flex: 1;
+}
+
+.setting-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+
+/* CREDITS */
+
+#credits-overlay {
+    position: fixed;
+    top: 230px; right: 30px;
+    width: 19.5em;
+    height: 15em;
+}
+
+.credits-row {
+    display: flex;
+    align-items: center;
+    margin: 0.5em 0 0.7em 1em;
+}
+
+.credits-row a {
+    color: #FFF8EB; 
+    font-size: 1rem;
+    position: relative;
+}
+
+a::after {
+    background-color: white;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    transition: width 0.3s ease-out;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+
+
+
+
+
+/* FOOTER ----- */
+
+#taskbar {
+    background-color: #1E2F3F;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: absolute;
+    bottom: 0;
+    
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+}
+
+#home {
+    font-size: 1.3rem;
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+
+#home:hover {transform: scale(1.2);}
+
+.fa-solid {
+    color: white;
+    cursor: pointer;
+    pointer-events: all;
+}
+    
+.clock {
+    font-size: 14px;
+}
+
+
+
+
+
+/* GAME ------------------------------------------ */
+
+#judgment {
+    background-color: #FFF8EB; 
+    border-radius: 10px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+
+    opacity: 0;
+}
+
+#judgment.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* LOADING SCREEN ----- */
+
+#loading-screen {
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 101;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+#loading-screen.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#loading-screen p {
+    font-size: 1rem;
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.08);}
+    100% {transform: scale(1);}
+}
+
+/* GAME WINDOW ----- */
+
+#window {
+    background-color: #FFF8EB;
+    width: 100%;
+    height: 30px;
+    position: fixed;
+    z-index: 100;
+}
+
+#window button {
+    background-color: #FF5F57;
+    border: none;
+    position: relative;
+    width: 40px;
+    height: 100%;
+    user-select: none;
+}
+
+#window button:hover {
+    position: absolute;
+    cursor: pointer;
+    /* add quit? and overlay ----------------------------------- */
+}
+
+h2 {
+    color: black;
+    font-size: 12rem;
+    position: absolute;
+    top: 25%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#intro-text {
+    position: absolute; 
+    top: 60%; left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 700px;
+}
+
+.text {
+    color: black;
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+    margin-bottom: 1.5em;
+}
+
+#judgment button {
+    font-size: 1.2rem;
+    padding-top: 0.3em;
+}
+
+
+/* QUESTIONS ----- */
+
+.question {
+    background-color: #FFF8EB;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.question.visible {
+    opacity: 1;
+    z-index: 10;
+}
+
+.question p {
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h3 {
+    font-size: 2rem;
+    position: absolute;
+    top: 25%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.decision {
+    display: flex;
+    gap: 50px;
+
+    position: absolute;
+    top: 65%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: auto
+}
+
+.option {
+    background-color: #FFF8EB;
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 0 black;
+    border: 2px solid black;
+    padding: 2em 3em;
+    /* border-radius: 10px; */
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+}
+
+
+.question button {
+    background-color: #FFF8EB;
+    position: absolute;
+    top: 88%; right: 5%;
+}
+
+.question button:hover {
+    background-color: #cec2ae;
+    cursor: pointer;
+}
