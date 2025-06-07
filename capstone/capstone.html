@@ -39,6 +39,7 @@
         <audio id="loading-audio" src="images/loading.mp3" preload="auto"></audio>
         <audio id="button-audio" src="images/button.mp3" preload="auto"></audio>
         <audio id="error-audio" src="images/error.mp3" preload="auto"></audio>
+        <audio id="narration" src="images/narration.mp3" preload="auto"></audio>
 
 
         <!-- DESKTOP -->
@@ -60,7 +61,7 @@
             <div id="settings-overlay" class="overlay draggable">
                 <div class="title-row">
                     <button id="close-settings">x</button>
-                    <h3>SETTING(S)</h3>
+                    <h3 id="settings-text">SETTING(S)</h3>
                 </div>
 
                 <div class="settings-row">
@@ -93,7 +94,6 @@
                 <div class="credits-row">
                     <a href="https://interactjs.io" target="_blank"> Interact.js</a>
                 </div>
-
             </div>
 
             
@@ -118,7 +118,20 @@
 
             <!-- game window -->
             <div id="window">
-                <button>x</button>
+                <button>x
+                    <span id="quit-text">quit?</span>
+                </button>
+            </div>
+
+            <div id="quit-bg"></div>
+            <div id="quit-overlay" class="overlay">
+                    <h3>Are you sure you want to quit?</h3>
+                    <p>Your progress will <span id="not">NOT</span> be saved.</p>
+
+                <div class="quit-row">
+                    <button id="cancel" class="quit-button">Cancel</button>
+                    <button id="quit" class="quit-button">Quit</button>
+                </div>
             </div>
 
             <!-- intro message -->
@@ -137,8 +150,6 @@
                     <button id="start-game">Start Simulation</button>
                 </div>
             </article>
-
-            <div id="error-message">Please select an answer before continuing.</div>
             
             <!-- questions -->
             <article id="question1" class="question">
@@ -152,6 +163,8 @@
                     <div id="option2" class="option" data-type="harsh"></div>
                     <div id="option3" class="option" data-type="procedural"></div>
                 </div>
+
+                <div id="error-message">Please select an answer before continuing.</div>
             
                 <button id="next-button">next question</button>
             </article>

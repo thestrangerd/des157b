@@ -3,17 +3,19 @@
     'use strict';
 
     // AUDIO
-    const clock = document.querySelector('#clock');
     const bgAudio = document.querySelector('#bg-audio')
     const mouseclick = document.querySelector('#mouseclick');
     const startup = document.querySelector('#startup');
     const loadingAudio = document.querySelector('#loading-audio');
+    const narration = document.querySelector('#narration');
     const buttonAudio = document.querySelector('#button-audio');
     const errorAudio = document.querySelector('#error-audio');
     bgAudio.volume = 0.3;
     errorAudio.volume = 0.3;
+    narration.playbackRate = 1.2;
 
     // ICONS
+    const clock = document.querySelector('#clock');
     const judgmentIcon = document.querySelector('#game-open');
     const settingsIcon = document.querySelector('#settings');
     const settingsOverlay = document.querySelector('#settings-overlay');
@@ -29,6 +31,10 @@
     const gamescreen = document.querySelector('#judgment');
     const loadingScreen = document.querySelector('#loading-screen');
     const closeWindow = document.querySelector('#window button');
+    const quitOverlay = document.querySelector('#quit-overlay');
+    const quitBg = document.querySelector('#quit-bg');
+    const cancelBtn = document.querySelector('#cancel');
+    const quitBtn = document.querySelector('#quit');
 
     // QUESTIONS
     const startGame = document.querySelector('#start-game');
@@ -36,7 +42,7 @@
     const questionNumber = document.querySelector('.question-number');
     const questionCase = document.querySelector('.question-case');
     const options = document.querySelectorAll('.option');
-    const errorMessage = document.querySelector('error-message');
+    const errorMessage = document.querySelector('#error-message');
     let nextButton = document.querySelector('#next-button');
     let selectedOption = null;
     let currentQuestion = 0;
@@ -50,7 +56,7 @@
             options: [
                 '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
                 '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong>'
+                '<strong>Guilty with no sentence.</strong> '
             ]
         },
         {
@@ -137,6 +143,7 @@
         ]
     };
 
+    // tracks player decisions
     const personalityScore = {
         amiable: 0,
         harsh: 0,
@@ -148,42 +155,44 @@
     // REAL-TIME CLOCK ------------------------------------------------
     // discovered how to create real-time clock from online resources
     function updateClock() {
-        const date = new Date();
+        const date = new Date(); // creates new date object
         const properties = {
-          hour: 'numeric',
+          hour: 'numeric', // numeric used for HH:MM format
           minute: 'numeric',
           hour12: true // determines AM/PM
         };
-        const timeString = date.toLocaleTimeString(undefined, properties);
+        const timeString = date.toLocaleTimeString(undefined, properties); // find local device time and converts to time string
         if (clock) clock.textContent = timeString;
     }
-    setInterval(updateClock, 1000);
+    setInterval(updateClock, 1000); // updates every second
     updateClock();
 
 
     // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
-        gamescreen.classList.add('visible');
-        question1.classList.add('visible');
         bgAudio.pause();
-        // startup.play();
-        // bgAudio.play();
+        startup.play();
+        bgAudio.play();
      });
 
     window.addEventListener('mousedown', function(){ 
         mouseclick.currentTime = 0;
-        // mouseclick.play(); 
+        mouseclick.play(); 
     });
 
     document.querySelectorAll('button').forEach(button => {
         button.addEventListener('click', function(){
+            const id = button.id
 
-            if (button.id === 'next-button' && !selectedOption) {
-                return;
+            if (id === 'start-game' || id === 'quit' || id === 'next-button') {
+                if (id === 'next-button' && !selectedOption) {
+                    return;
+                }
+    
+                buttonAudio.currentTime = 0;
+                buttonAudio.play();
             }
-
-            buttonAudio.currentTime = 0;
-            buttonAudio.play();
+            
         })
     })
 
@@ -191,6 +200,7 @@
     // SETTINGS ------------------------------------------------
     // settings overlay
     settingsIcon.addEventListener('click', function() {
+        console.log('settings icon clicked');
         if (settingsOverlay.style.display === 'block') {
             settingsOverlay.style.display = 'none';
         } else {
@@ -242,24 +252,56 @@
         loadingScreen.classList.add('active');
         loadingAudio.currentTime = 0;
         loadingAudio.play();
+
+        settingsOverlay.style.display = 'none';
+        creditsOverlay.style.display = 'none';
+        settingsIcon.style.display = 'none';
       
         // loading screen, then moves to gamepage
         setTimeout(() => {
           loadingScreen.classList.remove('active');
           loadingAudio.pause();
+          settingsIcon.style.display = 'block';
         }, 3500);
 
         gamescreen.classList.add('visible');
+        settingsIcon.classList.add('settings-top-right');
+
+        if (gamescreen.classList.contains('visible')) {
+            setTimeout(function() {
+                narration.currentTime = 0;
+                narration.play();
+            }, 4500);
+        }
     });
 
+    
     // close window when press "x"
     closeWindow.addEventListener('click', function() {
-        gamescreen.classList.remove('visible');
+        quitOverlay.style.display = 'block';
+        quitBg.style.display = 'block';
+        narration.pause();
+    })
 
+    cancelBtn.addEventListener('click', function() {
+        quitOverlay.style.display = 'none';
+        quitBg.style.display = 'none';
+        if (gamescreen.classList.contains('visible') && !question1.classList.contains('visible')) {
+            narration.play();
+        }
+    })
+
+    quitBtn.addEventListener('click', function() {
+        gamescreen.classList.remove('visible');
         document.querySelectorAll('.question').forEach(questions => {
             questions.classList.remove('visible');
         });
+        quitOverlay.style.display = 'none';
+        quitBg.style.display = 'none';
+        narration.pause();
+        settingsIcon.classList.remove('settings-top-right');
     })
+
 
     // start game
     function loadQuestion(index) {
@@ -279,6 +321,7 @@
     startGame.addEventListener('click', function() {
         question1.classList.add('visible');
         loadQuestion(0);
+        narration.pause();
     })
 
     options.forEach(function(option) {
@@ -294,6 +337,7 @@
             selectedOption = option;
         })
     })
+
 
     // NEXT QUESTIONS
 
