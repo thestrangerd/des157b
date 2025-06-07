@@ -1,14 +1,163 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capstone Project</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JUDGMENT</title>
 
-<body>
-    <h1>Hello Future!</h1>
-</body>
+        <!-- NORMALIZE -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
 
+        <!-- GOOGLE FONTS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <!-- INTER -->
+            <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+            <!-- AKTIV GROTESK CONDENSED -->
+            <link rel="stylesheet" href="https://use.typekit.net/pie7jaw.css">
+            
+        <!-- FONT AWESOME -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+        <!-- LIBRARIES -->
+            <!-- INTERACT.JS -->
+            <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
+            
+        <!-- LINKED -->
+        <link href="styles.css" rel="stylesheet">
+        <script src="script.js" defer></script>
+    </head>
+
+    <body>
+
+        <!-- AUDIO -->
+        <audio id="startup" src="images/startup.mp3" preload="auto"></audio>
+        <audio id="bg-audio" src="images/bgAudio.mp3" preload="auto" autoplay loop></audio>
+        <audio id="mouseclick" src="images/mouseclick.wav" preload="auto"></audio>
+        <audio id="loading-audio" src="images/loading.mp3" preload="auto"></audio>
+        <audio id="button-audio" src="images/button.mp3" preload="auto"></audio>
+        <audio id="error-audio" src="images/error.mp3" preload="auto"></audio>
+
+
+        <!-- DESKTOP -->
+        <section id="screen">
+            <h1>JUDGMENT</h1>
+
+            <!-- open game -->
+            <div id="game-open" class="desktop-icon">
+                <div id="judgment-icon" class="icon"></div>
+                <p>START</p>
+            </div>
+
+            <!-- settings -->
+            <div id="settings" class="desktop-icon">
+                <div id="settings-icon" class="icon"></div>
+                <p>SETTINGS</p>
+            </div>
+
+            <div id="settings-overlay" class="overlay draggable">
+                <div class="title-row">
+                    <button id="close-settings">x</button>
+                    <h3>SETTING(S)</h3>
+                </div>
+
+                <div class="settings-row">
+                    <label for="audio-toggle">All Audio</label>
+                    <input type="checkbox" id="audio-toggle" checked>
+                </div>
+
+                <div class="settings-row">
+                    <label for="white-noise">White Noise</label>
+                    <input type="checkbox" id="white-noise" checked>
+                </div>
+            </div>
+
+            <!-- credits -->
+            <div id="credits" class="desktop-icon">
+                <div id="credit-icon" class="icon"></div>
+                <p>CREDITS</p>
+            </div>
+
+            <div id="credits-overlay" class="overlay draggable">
+                <div class="title-row">
+                    <button id="close-credits">x</button>
+                    <h3>CREDITS</h3>
+                </div>
+
+                <div class="credits-row">
+                    <p>Made possible with:</p>
+                </div>
+
+                <div class="credits-row">
+                    <a href="https://interactjs.io" target="_blank"> Interact.js</a>
+                </div>
+
+            </div>
+
+            
+    
+            <!-- footer -->
+            <footer id="taskbar">
+                <a href="../../../index.html">
+                    <i id="home" class="fa-solid fa-house"></i>
+                </a>
+                <div id="clock" class="clock"></div>
+            </footer>
+        </section>
+
+
+        <!-- GAME -->
+        <section id="judgment">
+
+            <!-- loading -->
+            <div id="loading-screen">
+                <p>Loading JUDGMENT...</p>
+            </div>
+
+            <!-- game window -->
+            <div id="window">
+                <button>x</button>
+            </div>
+
+            <!-- intro message -->
+            <article>
+                <h2>JUDGMENT</h2>
+                <div id="intro-text">
+                    <p class="text">
+                        Welcome! You have been selected to participate in 
+                        <strong>JUDGMENT</strong>, an AI training program designed to teach our judicial model, JUDI, how humans make complex moral decisions. We aim to revamp the entire judicial system within the next twenty years using our brand new technology, and we need YOUR help! 
+                    </p>
+        
+                    <p class="text">
+                        This program consists of ten moral decisions. Each decision you make will shape how JUDI interprets real cases in the future. Please take your time to think over each question carefully. Once you move onto the next question, you <strong>cannot</strong> go back. <strong>Remember: your answers will affect many lives</strong>.
+                    </p>
+    
+                    <button id="start-game">Start Simulation</button>
+                </div>
+            </article>
+
+            <div id="error-message">Please select an answer before continuing.</div>
+            
+            <!-- questions -->
+            <article id="question1" class="question">
+                <p class="question-number">Question 1</p>
+                <h4 class="question-case">Loading case...</h4>
+
+                <p class="prompt">How should JUDI respond?</p>
+
+                <div class="decision">
+                    <div id="option1" class="option" data-type="amiable"></div>
+                    <div id="option2" class="option" data-type="harsh"></div>
+                    <div id="option3" class="option" data-type="procedural"></div>
+                </div>
+            
+                <button id="next-button">next question</button>
+            </article>
+
+        </section>
+
+        <div class="vignette-overlay"></div>
+    </body>
 </html>
