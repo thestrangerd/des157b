@@ -9,11 +9,12 @@
     const startup = document.querySelector('#startup');
     const loadingAudio = document.querySelector('#loading-audio');
     const buttonAudio = document.querySelector('#button-audio');
+    const errorAudio = document.querySelector('#error-audio');
     bgAudio.volume = 0.3;
+    errorAudio.volume = 0.3;
 
     // ICONS
     const judgmentIcon = document.querySelector('#game-open');
-
     const settingsIcon = document.querySelector('#settings');
     const settingsOverlay = document.querySelector('#settings-overlay');
     const closeSettings = document.querySelector('#close-settings');
@@ -32,11 +33,115 @@
     // QUESTIONS
     const startGame = document.querySelector('#start-game');
     const question1 = document.querySelector('#question1');
+    const questionNumber = document.querySelector('.question-number');
+    const questionCase = document.querySelector('.question-case');
     const options = document.querySelectorAll('.option');
+    const errorMessage = document.querySelector('error-message');
+    let nextButton = document.querySelector('#next-button');
+    let selectedOption = null;
+    let currentQuestion = 0;
+    // const totalQuestions = 10;
 
-    const nextButtons = document.querySelectorAll('.question button');
-    let currentQuestion = 1;
-    const totalQuestions = 10;
+    const simulation = {
+        quiz: [
+        {
+            question: 1,
+            case: 'A hungry teenager was caught stealing $100 worth of food from a local grocery store. The store owner wants to press charges. When asked, the teenager revealed they were stealing food to feed their two younger siblings.',
+            options: [
+                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
+                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
+                '<strong>Guilty with no sentence.</strong>'
+            ]
+        },
+        {
+            question: 2,
+            case: 'This is case 2',
+            options: [
+                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
+                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
+                '<strong>Guilty with no sentence.</strong>'
+            ]
+        },
+        {
+            question: 3,
+            case: 'This is case 3',
+            options: [
+                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
+                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
+                '<strong>Guilty with no sentence.</strong>'
+            ]
+        },
+        {
+            question: 4,
+            case: 'This is case 4',
+            options: [
+                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
+                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
+                '<strong>Guilty with no sentence.</strong>'
+            ]
+        },
+        {
+            question: 5,
+            case: 'This is case 5',
+            options: [
+                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
+                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
+                '<strong>Guilty with no sentence.</strong>'
+            ]
+        },
+        {
+            question: 6,
+            case: 'This is case 6',
+            options: [
+                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
+                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
+                '<strong>Guilty with no sentence.</strong>'
+            ]
+        },
+        {
+            question: 7,
+            case: 'This is case 7',
+            options: [
+                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
+                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
+                '<strong>Guilty with no sentence.</strong>'
+            ]
+        },
+        {
+            question: 8,
+            case: 'This is case 8',
+            options: [
+                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
+                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
+                '<strong>Guilty with no sentence.</strong>'
+            ]
+        },
+        {
+            question: 9,
+            case: 'This is case 9',
+            options: [
+                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
+                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
+                '<strong>Guilty with no sentence.</strong>'
+            ]
+        },
+        {
+            question: 10,
+            case: 'This is case 10',
+            options: [
+                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
+                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
+                '<strong>Guilty with no sentence.</strong>'
+            ]
+        }
+        ]
+    };
+
+    const personalityScore = {
+        amiable: 0,
+        harsh: 0,
+        procedural: 0
+    };
     
 
 
@@ -72,6 +177,11 @@
 
     document.querySelectorAll('button').forEach(button => {
         button.addEventListener('click', function(){
+
+            if (button.id === 'next-button' && !selectedOption) {
+                return;
+            }
+
             buttonAudio.currentTime = 0;
             buttonAudio.play();
         })
@@ -129,17 +239,17 @@
 
     // GAMESCREEN ----------------------------------------------
     judgmentIcon.addEventListener('click', function() {
-        // loadingScreen.classList.add('active');
-        // loadingAudio.currentTime = 0;
-        // loadingAudio.play();
+        loadingScreen.classList.add('active');
+        loadingAudio.currentTime = 0;
+        loadingAudio.play();
       
-        // // loading screen, then moves to gamepage
-        // setTimeout(() => {
-        //   loadingScreen.classList.remove('active');
-        //   loadingAudio.pause();
-        // }, 100);
+        // loading screen, then moves to gamepage
+        setTimeout(() => {
+          loadingScreen.classList.remove('active');
+          loadingAudio.pause();
+        }, 3500);
 
-        // gamescreen.classList.add('visible');
+        gamescreen.classList.add('visible');
     });
 
     // close window when press "x"
@@ -152,37 +262,67 @@
     })
 
     // start game
-    // startGame.addEventListener('click', function() {
-    //     question1.classList.add('visible');
-    // })
+    function loadQuestion(index) {
+        const questionData = simulation.quiz[index];
+        questionNumber.textContent = `Question ${index + 1}`;
+        questionCase.innerHTML = questionData.case;
+
+        options.forEach(function(box, optionNum) {
+            box.innerHTML = questionData.options[optionNum];
+            box.classList.remove('selected');
+            box.style.backgroundColor = '#FFF8EB';
+        });
+
+        selectedOption = null;
+    }
+
+    startGame.addEventListener('click', function() {
+        question1.classList.add('visible');
+        loadQuestion(0);
+    })
 
     options.forEach(function(option) {
         option.addEventListener('click', function() {
 
             options.forEach(function(box){ // reset on diff click
+                option.classList.remove('selected');
                 box.style.backgroundColor = '#FFF8EB';
             });
 
+            option.classList.add('selected');
             option.style.backgroundColor = '#cec2ae';
+            selectedOption = option;
         })
     })
 
     // NEXT QUESTIONS
 
-    nextButtons.forEach(function(button) {
-        button.addEventListener('click', function(){
-            const current = document.querySelector(`#question${currentQuestion}`);
-            current.classList.remove('visible');
+    nextButton.addEventListener('click', function() {
+        if (!selectedOption) {
+            errorAudio.currentTime = 0;
+            errorAudio.play();
+            errorMessage.style.display = 'block';
+
+            setTimeout(function() {
+                errorMessage.style.display = 'none';
+                errorAudio.pause();
+                errorAudio.currentTime = 0;
+            }, 2000);
+            
+            return;
+        }
+
+        const type = selectedOption.dataset.type;
+        if (type) {
+            personalityScore[type]++;
+            console.log(personalityScore);
+        }
+
+        currentQuestion++;
     
-            currentQuestion++;
-    
-            if (currentQuestion <= totalQuestions) {
-                const next = document.querySelector(`#question${currentQuestion}`);
-                if (next) {
-                    next.classList.add('visible');
-                }
-            } 
-        })
+        if (currentQuestion < simulation.quiz.length) {
+            loadQuestion(currentQuestion);
+        } 
     })
     
 

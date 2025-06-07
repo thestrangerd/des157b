@@ -38,6 +38,7 @@
         <audio id="mouseclick" src="images/mouseclick.wav" preload="auto"></audio>
         <audio id="loading-audio" src="images/loading.mp3" preload="auto"></audio>
         <audio id="button-audio" src="images/button.mp3" preload="auto"></audio>
+        <audio id="error-audio" src="images/error.mp3" preload="auto"></audio>
 
 
         <!-- DESKTOP -->
@@ -126,159 +127,33 @@
                 <div id="intro-text">
                     <p class="text">
                         Welcome! You have been selected to participate in 
-                        <strong>JUDGMENT</strong>, an AI training program designed to teach our judicial model, JUDI, how humans make complex moral decisions. We aim to automate the judicial system by having JUDI replace all judges within the next twenty years.
+                        <strong>JUDGMENT</strong>, an AI training program designed to teach our judicial model, JUDI, how humans make complex moral decisions. We aim to revamp the entire judicial system within the next twenty years using our brand new technology, and we need YOUR help! 
                     </p>
         
                     <p class="text">
-                        This program consists of ten moral decisions. Each decision you make will shape how JUDI interprets real cases as a judge. Please take your time to think over each question carefully. Once you move onto the next question, you cannot go back. <strong>Remember: your answers will affect many lives</strong>.
+                        This program consists of ten moral decisions. Each decision you make will shape how JUDI interprets real cases in the future. Please take your time to think over each question carefully. Once you move onto the next question, you <strong>cannot</strong> go back. <strong>Remember: your answers will affect many lives</strong>.
                     </p>
     
                     <button id="start-game">Start Simulation</button>
                 </div>
             </article>
+
+            <div id="error-message">Please select an answer before continuing.</div>
             
-            <!-- question 1 -->
+            <!-- questions -->
             <article id="question1" class="question">
-                <p>Question 1</p>
-                <h3>i am a question 1</h3>
+                <p class="question-number">Question 1</p>
+                <h4 class="question-case">Loading case...</h4>
+
+                <p class="prompt">How should JUDI respond?</p>
 
                 <div class="decision">
-
-                    <div class="option1 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa esse animi tempora delectus dolorem nostrum, perferendis porro id architecto deleniti dolore ad voluptatibus! Eum maiores tempora autem temporibus.
-                    </div>
-
-                    <div class="option2 option">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio voluptatem alias, in quos nisi vitae, suscipit officia vero, magni necessitatibus cumque atx
-                    </div>
-
-                    <div class="option3 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae totam dolore eligendi aspernatur autem culpa odio, veritatis nostrum ipsa. Esse ab officiis officia eos accusantium alias
-                    </div>
-
+                    <div id="option1" class="option" data-type="amiable"></div>
+                    <div id="option2" class="option" data-type="harsh"></div>
+                    <div id="option3" class="option" data-type="procedural"></div>
                 </div>
             
-                <button>next question</button>
-            </article>
-
-            <!-- question 2 -->     
-            <article id="question2" class="question">
-                <h2>hi there</h2>
-                <p>i am a question 2</p>
-
-                <div class="decision">
-
-                    <div class="option1 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa esse animi tempora delectus dolorem nostrum, perferendis porro id architecto deleniti dolore ad voluptatibus! Eum maiores tempora autem temporibus.
-                    </div>
-
-                    <div class="option2 option">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio voluptatem alias, in quos nisi vitae, suscipit officia vero, magni necessitatibus cumque atx
-                    </div>
-
-                    <div class="option3 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae totam dolore eligendi aspernatur autem culpa odio, veritatis nostrum ipsa. Esse ab officiis officia eos accusantium alias
-                    </div>
-
-                </div>
-
-                <button>next question</button>
-            </article>
-
-            <!-- question 3 -->     
-            <article id="question3" class="question">
-                <h2>hi there</h2>
-                <p>i am a question 3</p>
-
-                <div class="decision">
-
-                    <div class="option1 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa esse animi tempora delectus dolorem nostrum, perferendis porro id architecto deleniti dolore ad voluptatibus! Eum maiores tempora autem temporibus.
-                    </div>
-
-                    <div class="option2 option">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio voluptatem alias, in quos nisi vitae, suscipit officia vero, magni necessitatibus cumque atx
-                    </div>
-
-                    <div class="option3 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae totam dolore eligendi aspernatur autem culpa odio, veritatis nostrum ipsa. Esse ab officiis officia eos accusantium alias
-                    </div>
-
-                </div>
-
-                <button>next question</button>
-            </article>
-
-            <!-- question 4 -->     
-            <article id="question4" class="question">
-                <h2>hi there</h2>
-                <p>i am a question 4</p>
-
-                <div class="decision">
-
-                    <div class="option1 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa esse animi tempora delectus dolorem nostrum, perferendis porro id architecto deleniti dolore ad voluptatibus! Eum maiores tempora autem temporibus.
-                    </div>
-
-                    <div class="option2 option">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio voluptatem alias, in quos nisi vitae, suscipit officia vero, magni necessitatibus cumque atx
-                    </div>
-
-                    <div class="option3 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae totam dolore eligendi aspernatur autem culpa odio, veritatis nostrum ipsa. Esse ab officiis officia eos accusantium alias
-                    </div>
-
-                </div>
-
-                <button>next question</button>
-            </article>
-
-            <!-- question 5 -->     
-            <article id="question5" class="question">
-                <h2>hi there</h2>
-                <p>i am a question 5</p>
-
-                <div class="decision">
-
-                    <div class="option1 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa esse animi tempora delectus dolorem nostrum, perferendis porro id architecto deleniti dolore ad voluptatibus! Eum maiores tempora autem temporibus.
-                    </div>
-
-                    <div class="option2 option">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio voluptatem alias, in quos nisi vitae, suscipit officia vero, magni necessitatibus cumque atx
-                    </div>
-
-                    <div class="option3 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae totam dolore eligendi aspernatur autem culpa odio, veritatis nostrum ipsa. Esse ab officiis officia eos accusantium alias
-                    </div>
-
-                </div>
-
-                <button>next question</button>
-            </article>
-
-            <!-- question 6 -->     
-            <article id="question6" class="question">
-                <h2>hi there</h2>
-                <p>i am a question 6</p>
-
-                <div class="decision">
-
-                    <div class="option1 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa esse animi tempora delectus dolorem nostrum, perferendis porro id architecto deleniti dolore ad voluptatibus! Eum maiores tempora autem temporibus.
-                    </div>
-
-                    <div class="option2 option">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio voluptatem alias, in quos nisi vitae, suscipit officia vero, magni necessitatibus cumque atx
-                    </div>
-
-                    <div class="option3 option">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae totam dolore eligendi aspernatur autem culpa odio, veritatis nostrum ipsa. Esse ab officiis officia eos accusantium alias
-                    </div>
-
-                </div>
-
-                <button>next question</button>
+                <button id="next-button">next question</button>
             </article>
 
         </section>
