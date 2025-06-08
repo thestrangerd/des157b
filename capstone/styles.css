@@ -354,12 +354,13 @@ a:hover::after {
     width: 100%;
     height: 30px;
     position: fixed;
-    z-index: 8;
+    z-index: 9;
 }
 
 #window button {
     background-color: #FF5F57;
     border: none;
+    display: block;
     position: relative;
     width: 35px;
     height: 100%;
@@ -372,6 +373,7 @@ a:hover::after {
 }
 
 /* QUIT----- */
+
 #quit-bg {
     background-color: rgba(0,0,0,0.6);
     display: none;
@@ -564,4 +566,123 @@ h4 {
     position: absolute;
     top: 89%; left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* END PAGE ----- */
+
+#end-screen {
+    background-color: #FFF8EB; 
+    border-radius: 10px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 8;
+
+    display: none;
+}
+
+#end-screen.visible {
+    display: block;
+}
+
+h5 {
+    font-size: 9rem;
+    line-height: 0.9em;
+    position: absolute;
+    top: 8%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#outro-text {
+    position: absolute; 
+    top: 65%; left: 48%;
+    transform: translate(-50%, -50%);
+    max-width: 700px;
+}
+
+#end-button {
+    font-size: 1.2rem;
+    padding-top: 0.3em;
+}
+
+
+
+
+
+/* POST-JUDGMENT ------------------------------------------ */
+
+/* NARRATION SCREEN ----- */
+#narration-screen {
+    background-color: black;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    cursor: none;
+}
+
+#narration-screen.visible {
+    display: block;
+}
+
+#typed-text p {
+    margin: 1em 0;
+    font-size: 1.5rem;
+    color: #FCFCFC;
+    margin: 3em 3em;
+}
+
+
+/* COURT SCENE ----- */
+
+#court-scene {
+    background-color: rgb(196, 40, 40);
+    color: #FCFCFC;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 16;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+#court-scene.visible {
+    display: block;
+}
+
+#courtroom {
+    position: absolute; 
+    top: 55%; left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 700px;
+}
+
+h6 {
+    font-size: 8rem;
+    position: absolute;
+    top: -10%; left: 50%;
+    transform: translate(-50%, -100%);
+    white-space: nowrap;
+}
+
+.court-text {
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+    margin-bottom: 1.5em;
+}
+
+#continue {
+    font-size: 1.2rem;
+    padding: 0.5em 1em;
+    margin-top: 1.5em;
 }

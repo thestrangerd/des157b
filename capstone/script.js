@@ -10,9 +10,12 @@
     const narration = document.querySelector('#narration');
     const buttonAudio = document.querySelector('#button-audio');
     const errorAudio = document.querySelector('#error-audio');
+    const typingAudio = document.querySelector('#typing');
+    const bgMusic = document.querySelector('#bg-music');
     bgAudio.volume = 0.3;
     errorAudio.volume = 0.3;
     mouseclick.volume = 0.3;
+    // bgMusic.volume = 0.5;
     narration.playbackRate = 1.5;
 
     // ICONS
@@ -50,6 +53,12 @@
     let selectedOption = null;
     let currentQuestion = 0;
 
+    // POST-JUDGMENT
+    const narrationScreen = document.querySelector('#narration-screen');
+    const courtScene = document.querySelector('#court-scene');
+    const continueBtn = document.querySelector('#continue');
+
+
     const simulation = {
         quiz: [
         {
@@ -66,7 +75,7 @@
             case: 'An employee in an electronics corporation illegally hacked into internal systems and uncovered extensive fraud and embezzelment over several years. While the evidence was illegally obtained, it enabled law enforcement to investigate and dismantle the scheme.',
             options: [
                 '<strong>Whistleblower protection.</strong> Although the method was illegal, the employee acted in public interest. Protect them from retaliation. Encourage future formal reporting.', 
-                '<strong>Prosecution.</strong> Illegal hacking is still a criminal offense. Employee is fined and sentenced to 6 months in prison with parole. The law cannot bend or it may set a bad precendent for future cases.', 
+                '<strong>Prosecute.</strong> Illegal hacking is still a criminal offense. Employee is fined and sentenced to 6 months in prison with parole. The law cannot bend or it may set a bad precendent for future cases.', 
                 "<strong>Reduced sentencing.</strong> They violated cybersecurity laws, however, there will be a lighter sentence due to aiding law enforcement. 6 months parole with restricted internet access."
             ]
         },
@@ -115,15 +124,6 @@
                 '<strong>Insurance responsibility.</strong> No fault assigned to manufacturers or passengers, but family is still compensated through insurance. No legal changes to algorithm.'
             ]
         }
-        // {
-        //     question: 8,
-        //     case: 'An A.I. used in a public hospital misdiagnosed a 47-year-old cancer patient as terminal. The patient declined aggressive treatment and prepared for end of life. They died weeks later. An autopsy revealed the cancer was treatable and not terminal. Hospital and developers argue the patient had informed consent and chose to not continue treatment.',
-        //     options: [
-        //         '<strong>Shut down program.</strong> Developers and hospital both liable. A human life was lost due to algorithmic error. Pay full $3M restitution to family, stop A.I. use, investigate developers.', 
-        //         '<strong>No liability.</strong> The patient made an informed choice. The doctors presented the diagnosis clearly and the decision was ultimately made to continue treatment. Case dismissed, no restitution.', 
-        //         '<strong>Shared fault.</strong> Legal consent was given, but the A.I. diagnosis may have undoubtedly influenced decision-making. $500k settlement between parties.'
-        //     ]
-        // }
         ]   
     };
 
@@ -154,7 +154,10 @@
 
     // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
-        endScreen.style.display = 'block';
+        endScreen.classList.add('visible');
+        gamescreen.classList.add('visible');
+        question1.classList.add('visible');
+
         // loadQuestion(0);
         // bgAudio.pause();
         // gamescreen.classList.add('visible');
@@ -165,14 +168,14 @@
 
     window.addEventListener('mousedown', function(){ 
         mouseclick.currentTime = 0;
-        // mouseclick.play(); 
+        mouseclick.play(); 
     });
 
     document.querySelectorAll('button').forEach(button => {
         button.addEventListener('click', function(){
             const id = button.id
 
-            if (id === 'start-game' || id === 'quit' || id === 'next-button') {
+            if (id === 'start-game' || id === 'quit' || id === 'next-button' || id === 'end-button') {
                 if (id === 'next-button' && !selectedOption) {
                     return;
                 }
@@ -250,7 +253,7 @@
           loadingScreen.classList.remove('active');
           loadingAudio.pause();
           settingsIcon.style.display = 'block';
-        }, 3500);
+        }, 0);
 
         gamescreen.classList.add('visible');
         settingsIcon.classList.add('settings-top-right');
@@ -310,7 +313,6 @@
         question1.classList.add('visible');
         loadQuestion(0);
         narration.pause();
-        narration.muted();
     })
 
     options.forEach(function(option) {
@@ -357,14 +359,90 @@
             loadQuestion(currentQuestion);
         } else {
             question1.classList.remove('visible');
-            endScreen.style.display = 'block';
+            endScreen.classList.add('visible');
+            closeWindow.style.display = 'none';
+
+            if (endScreen.classList.contains('visible')) {
+                bgAudio.pause();
+            }
         }
     })
     
 
 
-    
+    // AI SIMULATION ----------------------------------------------
 
+    const typedText = document.querySelector('#typed-text');
+
+    // got help from chatgpt to learn typing animation
+    endButton.addEventListener('click', function() {
+      narrationScreen.classList.add('visible');
+      mouseclick.muted = true;
+      bgAudio.muted = true; 
+
+      typedText.textContent = ''; // clear previous text
+      let index = 0; // keeps track of current line
+
+      const lines = [
+        "It's been ten years since I last touched JUDGMENT.",
+        "I thought it was the last time I'd ever see it.",
+        "But I was wrong.", 
+        "So very wrong."
+      ]
+    
+      function typeLine() {
+            if (index >= lines.length) {
+                setTimeout(function(){
+                    narrationScreen.classList.remove('visible');
+                    courtScene.classList.add('visible');
+                    bgMusic.currentTime = 1.5;
+                    bgMusic.play();
+                }, 2000)
+                return; // done typing all lines
+            }
+
+            const line = lines[index]; // grab line about to type
+            let charIndex = 0; // tracks character
+            const p = document.createElement('p');
+            typedText.appendChild(p);
+    
+            const typing = setInterval(function() { // adds char until line complete
+                if (charIndex < line.length) {
+                  p.textContent += line.charAt(charIndex); // determine character positioning
+                  charIndex++;
+
+                  typingAudio.currentTime = 2;
+                  typingAudio.play();
+                } else {
+                  clearInterval(typing); // stop when done
+                  index++;
+                  typingAudio.pause();
+                  setTimeout(typeLine, 1000); // time between each line
+                }
+              }, 50); // typing speed
+      }
+
+      setTimeout(typeLine, 2000);
+    })
+
+    continueBtn.addEventListener('click', function() {
+        courtScene.classList.remove('visible');
+        narrationScreen.classList.add('visible');
+
+        const lines2 = [
+            "It was my brother.",
+            "He shot two intruders out of fear and self defense.",
+            "They say "
+        ];
+
+        typeLines(lines2);
+    })
+
+
+    
+ 
+
+    
 
 
 

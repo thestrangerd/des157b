@@ -34,12 +34,14 @@
 
         <!-- AUDIO -->
         <audio id="startup" src="images/startup.mp3" preload="auto"></audio>
-        <audio id="bg-audio" src="images/bgAudio.mp3" preload="auto" autoplay loop></audio>
+        <audio id="bg-audio" src="images/bgAudio.mp3" preload="auto" loop></audio>
         <audio id="mouseclick" src="images/mouseclick.wav" preload="auto"></audio>
         <audio id="loading-audio" src="images/loading.mp3" preload="auto"></audio>
         <audio id="button-audio" src="images/button.mp3" preload="auto"></audio>
         <audio id="error-audio" src="images/error.mp3" preload="auto"></audio>
         <audio id="narration" src="images/narration.mp3" preload="auto"></audio>
+        <audio id="typing" src="images/typing.mp3" preload="auto"></audio>
+        <audio id="bg-music" src="images/bgMusic.mp3" preload="auto" loop></audio>
 
 
         <!-- DESKTOP -->
@@ -170,9 +172,33 @@
             </article>
 
             <article id="end-screen">
-                <h2>Simulation Complete</h2>
-                <p>Your decisions have been recorded. Thank you for participating in <strong>JUDGMENT</strong>. </p>
-                <button id="end-button">End Simulation</button>
+                <h5>Simulation Complete</h5>
+                <div id="outro-text">
+                    <p class="text">Your decisions have been recorded. Thank you for participating in <strong>JUDGMENT</strong>. <br>You may now leave.</p>
+                    <button id="end-button">End Simulation</button>
+                </div>
+            </article>
+
+        </section>
+
+
+        <section>
+
+            <div id="narration-screen">
+                 <div id="typed-text"></div>
+            </div>
+
+            <article id="court-scene">
+                <h6>CASE #X90-28B</h6>
+                <div id="courtroom">
+                    <p class="court-text"><strong>CASE</strong>: Fatal Self-Defense</p>
+                    <p class="court-text"><strong>DEFENDANT</strong>: Jude M.</p>
+                    <p class="court-text"><strong>VICTIM</strong>: Alex R.</p>
+                    <p class="court-text"><strong>CASE DETAILS</strong>: <br>The defendant, a homeowner, encountered two suspects in their house late at night. Before confrontation, the defendant fatally shot one intruder in the house with a Colt revolver. The other was found deceased from a gunshot to the back in the front yard. Police found the intruders armed with crowbars and machetes, no firearms. The defendant claims it was self-defense and his right to shoot intruders on his property.</p>
+
+                    <button id="continue">Continue</button>
+                </div>
+                
             </article>
 
         </section>
