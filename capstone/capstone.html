@@ -140,11 +140,11 @@
                 <div id="intro-text">
                     <p class="text">
                         Welcome! You have been selected to participate in 
-                        <strong>JUDGMENT</strong>, an AI training program designed to teach our judicial model, JUDI, how humans make complex moral decisions. We aim to revamp the entire judicial system within the next twenty years using our brand new technology, and we need YOUR help! 
+                        <strong>JUDGMENT</strong>, an AI training program designed to teach our judicial model, JUDI, how humans make complex moral decisions. We aim to revamp the entire judicial system within the next ten years using our brand new technology, and we need YOUR help! 
                     </p>
         
                     <p class="text">
-                        This program consists of ten moral decisions. Each decision you make will shape how JUDI interprets real cases in the future. Please take your time to think over each question carefully. Once you move onto the next question, you <strong>cannot</strong> go back. <strong>Remember: your answers will affect many lives</strong>.
+                        This program consists of seven moral decisions. Each decision you make will shape how JUDI interprets real cases in the future. Please take your time to think over each question carefully. Once you move onto the next question, you <strong>cannot</strong> go back. <strong>Remember: your answers will affect many lives</strong>.
                     </p>
     
                     <button id="start-game">Start Simulation</button>
@@ -153,20 +153,26 @@
             
             <!-- questions -->
             <article id="question1" class="question">
-                <p class="question-number">Question 1</p>
-                <h4 class="question-case">Loading case...</h4>
+                <p class="question-number"></p>
+                <h4 class="question-case"></h4>
 
                 <p class="prompt">How should JUDI respond?</p>
 
                 <div class="decision">
                     <div id="option1" class="option" data-type="amiable"></div>
                     <div id="option2" class="option" data-type="harsh"></div>
-                    <div id="option3" class="option" data-type="procedural"></div>
+                    <div id="option3" class="option" data-type="pragmatic"></div>
                 </div>
 
                 <div id="error-message">Please select an answer before continuing.</div>
             
                 <button id="next-button">next question</button>
+            </article>
+
+            <article id="end-screen">
+                <h2>Simulation Complete</h2>
+                <p>Your decisions have been recorded. Thank you for participating in <strong>JUDGMENT</strong>. </p>
+                <button id="end-button">End Simulation</button>
             </article>
 
         </section>

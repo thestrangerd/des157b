@@ -115,7 +115,6 @@ h1 {
     color: #FFF8EB;
     background-color: #1E2F3F;
     border-radius: 10px;
-    box-shadow: -1px 1px 5px #888785;
     z-index: 9;
     text-align: center; 
     padding: 1em;
@@ -362,7 +361,7 @@ a:hover::after {
     background-color: #FF5F57;
     border: none;
     position: relative;
-    width: 40px;
+    width: 35px;
     height: 100%;
     user-select: none;
 }
@@ -526,7 +525,7 @@ h4 {
 
 .decision {
     display: flex;
-    gap: 50px;
+    gap: 40px;
 
     position: absolute;
     top: 69%; left: 50%;

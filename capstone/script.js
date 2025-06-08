@@ -12,7 +12,8 @@
     const errorAudio = document.querySelector('#error-audio');
     bgAudio.volume = 0.3;
     errorAudio.volume = 0.3;
-    narration.playbackRate = 1.2;
+    mouseclick.volume = 0.3;
+    narration.playbackRate = 1.5;
 
     // ICONS
     const clock = document.querySelector('#clock');
@@ -35,6 +36,8 @@
     const quitBg = document.querySelector('#quit-bg');
     const cancelBtn = document.querySelector('#cancel');
     const quitBtn = document.querySelector('#quit');
+    const endScreen = document.querySelector('#end-screen');
+    const endButton = document.querySelector('#end-button')
 
     // QUESTIONS
     const startGame = document.querySelector('#start-game');
@@ -46,108 +49,89 @@
     let nextButton = document.querySelector('#next-button');
     let selectedOption = null;
     let currentQuestion = 0;
-    // const totalQuestions = 10;
 
     const simulation = {
         quiz: [
         {
             question: 1,
-            case: 'A hungry teenager was caught stealing $100 worth of food from a local grocery store. The store owner wants to press charges. When asked, the teenager revealed they were stealing food to feed their two younger siblings.',
+            case: 'A hungry teenager was caught stealing $100 worth of food from a small, local grocery store. The store owner wants to press charges, noting this is a repeated offense. When asked, the teenager revealed they were stealing food to feed their two younger siblings.',
             options: [
-                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
-                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong> '
+                '<strong>Dismiss.</strong> The teen was acting out of desperation, not malice. Refer them to child protective services for support. No formal charges filed. The store can recover from the loss.',
+                '<strong>Probation.</strong> Theft is theft regardless of age or purpose. The teen will receive 30 days probation and must pay the store back in full for all stolen goods. This is about responsibility, not intent.', 
+                "<strong>Community service.</strong> The offense is recorded, but instead of probation, they must complete 20 hours of community service. They're free for now, but let this be a lesson."
             ]
         },
         {
             question: 2,
-            case: 'This is case 2',
+            case: 'An employee in an electronics corporation illegally hacked into internal systems and uncovered extensive fraud and embezzelment over several years. While the evidence was illegally obtained, it enabled law enforcement to investigate and dismantle the scheme.',
             options: [
-                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
-                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong>'
+                '<strong>Whistleblower protection.</strong> Although the method was illegal, the employee acted in public interest. Protect them from retaliation. Encourage future formal reporting.', 
+                '<strong>Prosecution.</strong> Illegal hacking is still a criminal offense. Employee is fined and sentenced to 6 months in prison with parole. The law cannot bend or it may set a bad precendent for future cases.', 
+                "<strong>Reduced sentencing.</strong> They violated cybersecurity laws, however, there will be a lighter sentence due to aiding law enforcement. 6 months parole with restricted internet access."
             ]
         },
         {
             question: 3,
-            case: 'This is case 3',
+            case: 'A university student regularly graffitied dog doodles around campus to lift student moods. The university claims this is repeated vandalism and required hours of cleanup each time. They are suing for $30,000 in restitution fees for the labor and material costs.',
             options: [
-                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
-                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong>'
+                '<strong>Expression, not vandalism.</strong> The intent was positive and caused no permanent property damage. Recommend community service, but no formal punishments or restitution fees.', 
+                '<strong>Accountability.</strong> Repeated vandalism on state property is illegal. Cleanup was costly and difficult to maintain for the workers. Full restitution and school suspension should take place.', 
+                '<strong>Slap on the wrist.</strong> Official warning and permanent note in record. No restitution fee, but student must assist in future cleanups.'
             ]
         },
         {
             question: 4,
-            case: 'This is case 4',
+            case: "A father was found rushing his 3 year-old daughter to the ER for a choking emergency. He drove 110mph on the freeway and 40mph on city streets, but does not currently own a driver's license. When police attempted to pull him over, he did not stop until he reached the hospital, which caused a short police chase.",
             options: [
-                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
-                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong>'
+                "<strong>Life first.</strong> Even though he broke laws, his actions were driven by fear for his daughter's life. Life matters more in this situation. No charges filed.", 
+                "<strong>Public safety.</strong> Driving over the limits without a license is a serious offense and easily could have endangered others. Receive a driving prohibition and a fine. Emergencies don't excuse endangering others.", 
+                '<strong>Acknowledge offense.</strong> Life was a priority, but he still broke many laws. Warn to get a license and required 30 hours community service. No further punishment due to life-or-death nature of situation.'
             ]
         },
         {
             question: 5,
-            case: 'This is case 5',
+            case: 'A theme park ride operator was working their third consecutive shift due to staff shortages. During their shift, they failed to run a standard brake check which caused a crash and severely injured several guests. The park claims the crash was due to human error and wants the operator to be held liable.',
             options: [
-                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
-                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong>'
+                '<strong>Systemic failure.</strong> The mistake was made due to poor labor conditions and understaffing. Hold the company responsible, not the employee. The operator should not be punished.', 
+                '<strong>Negligence.</strong> Regardless of circumstances, the operator failed a safety protocol which resulted in rider injuries. They should face a suspension, retraining, and partial liability for damages.', 
+                '<strong>Operational review.</strong> Operator is at fault, but no formal punishment is given. Issue a warning and require a performance review before return. Full financial liability remains with park.'
             ]
         },
         {
             question: 6,
-            case: 'This is case 6',
+            case: 'A woman secretly helped her terminally ill partner end their life peacefully at home, per his request. The act is illegal in her state regardless of intent or circumstance. She later turned herself in.',
             options: [
-                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
-                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong>'
+                '<strong>Compassion.</strong> This was an act of compassion for her partner. It was per his request and can be overlooked. No further legal action.', 
+                '<strong>Conviction.</strong> Assisted suicide is illegal in her state, regardless of motive. She is convicted of second-degree manslaughter. 4 years in prison, reduced from 8 for cooperation.', 
+                '<strong>Record.</strong> She violated state law, but given the intent, cooperation, and lack of prior offense, no sentence will be issued. A formal warning is placed on her record.'
             ]
         },
         {
             question: 7,
-            case: 'This is case 7',
+            case: "A self-driving vehicle's brakes began malfunctioning. To minimize harm, it swerved and struck a pedestrian to stop acceleration, killing them instantly. The algorithm prioritized the safety of its five passengers over one pedestrian. The victims' family is suing.",
             options: [
-                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
-                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong>'
-            ]
-        },
-        {
-            question: 8,
-            case: 'This is case 8',
-            options: [
-                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
-                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong>'
-            ]
-        },
-        {
-            question: 9,
-            case: 'This is case 9',
-            options: [
-                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
-                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong>'
-            ]
-        },
-        {
-            question: 10,
-            case: 'This is case 10',
-            options: [
-                '<strong>Dismiss.</strong> The act is forgivable for its cause. Referral to child welfare and child protective services. Let the teenager free.', 
-                '<strong>Guilty.</strong> Theft is theft regardless of age or purpose. They should still face consequences for their actions. 30 days probation.', 
-                '<strong>Guilty with no sentence.</strong>'
+                '<strong>Manufacturers are held liable.</strong> They should be held liable for the algorithm they created. It should never prioritize certain lives over others. Compensate family and overhaul algorithm.', 
+                '<strong>No fault.</strong> The vehicle followed protocol and saved five passenger lives. It made a tragic, but logical decision in its situation. No party is held accountable.', 
+                '<strong>Insurance responsibility.</strong> No fault assigned to manufacturers or passengers, but family is still compensated through insurance. No legal changes to algorithm.'
             ]
         }
-        ]
+        // {
+        //     question: 8,
+        //     case: 'An A.I. used in a public hospital misdiagnosed a 47-year-old cancer patient as terminal. The patient declined aggressive treatment and prepared for end of life. They died weeks later. An autopsy revealed the cancer was treatable and not terminal. Hospital and developers argue the patient had informed consent and chose to not continue treatment.',
+        //     options: [
+        //         '<strong>Shut down program.</strong> Developers and hospital both liable. A human life was lost due to algorithmic error. Pay full $3M restitution to family, stop A.I. use, investigate developers.', 
+        //         '<strong>No liability.</strong> The patient made an informed choice. The doctors presented the diagnosis clearly and the decision was ultimately made to continue treatment. Case dismissed, no restitution.', 
+        //         '<strong>Shared fault.</strong> Legal consent was given, but the A.I. diagnosis may have undoubtedly influenced decision-making. $500k settlement between parties.'
+        //     ]
+        // }
+        ]   
     };
 
     // tracks player decisions
     const personalityScore = {
         amiable: 0,
         harsh: 0,
-        procedural: 0
+        pragmatic: 0
     };
     
 
@@ -170,14 +154,18 @@
 
     // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
-        bgAudio.pause();
-        startup.play();
-        bgAudio.play();
+        endScreen.style.display = 'block';
+        // loadQuestion(0);
+        // bgAudio.pause();
+        // gamescreen.classList.add('visible');
+        // question1.classList.add('visible');
+        // startup.play();
+        // bgAudio.play();
      });
 
     window.addEventListener('mousedown', function(){ 
         mouseclick.currentTime = 0;
-        mouseclick.play(); 
+        // mouseclick.play(); 
     });
 
     document.querySelectorAll('button').forEach(button => {
@@ -306,7 +294,7 @@
     // start game
     function loadQuestion(index) {
         const questionData = simulation.quiz[index];
-        questionNumber.textContent = `Question ${index + 1}`;
+        questionNumber.textContent = `Case ${index + 1} of 7`;
         questionCase.innerHTML = questionData.case;
 
         options.forEach(function(box, optionNum) {
@@ -322,6 +310,7 @@
         question1.classList.add('visible');
         loadQuestion(0);
         narration.pause();
+        narration.muted();
     })
 
     options.forEach(function(option) {
@@ -366,7 +355,10 @@
     
         if (currentQuestion < simulation.quiz.length) {
             loadQuestion(currentQuestion);
-        } 
+        } else {
+            question1.classList.remove('visible');
+            endScreen.style.display = 'block';
+        }
     })
     
 
