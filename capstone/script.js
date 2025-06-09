@@ -158,19 +158,17 @@
 
     // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
-        courtScene.classList.add('visible');
-        bgMusic.play();
+        // courtScene.classList.add('visible');
+        // bgMusic.play();
         // gamescreen.classList.add('visible');
         // question1.classList.add('visible');
 
-        // loadQuestion(0);
-        // bgAudio.pause();
-    
-        // startup.play();
-        // bgAudio.play();
+        startup.play();
+        bgAudio.play();
 
         narrationScreen1.classList.remove('visible');
         narrationScreen2.classList.remove('visible');
+        narrationScreen3.classList.remove('visible');
      });
 
     window.addEventListener('mousedown', function(){ 
@@ -384,6 +382,7 @@
         const blackScreen = document.querySelector('#black-screen');
         setTimeout(function() {
             blackScreen.style.opacity = 1;
+            blackScreen.style.display = 'block';
         }, delay);
     }
 
@@ -457,7 +456,7 @@
             "Shot in the back running for his life.",
             "He was unarmed. Just a petty thief.",
             "They called it self-defense, but he was already fleeing out the door.",
-            "Now it was up to JUDI to decide his fate."
+            "Now JUDI decides if that was justice."
         ], typedText2);
 
         setTimeout(function() {
@@ -536,17 +535,13 @@
                             sentencingScene.style.opacity = 1; // reset for future
                     
                             singleLine([
-                                "This is the world JUDI is learning to shape.",
-                                "And I was a part of it.",
-                                "Every judgment I made became part of its logic.",
-                                "Not just who I favored, but what I overlooked.",
-                                "Was I really training justice...",
-                                "or just teaching it to judge like me?",
-                                "It wasn't just a test.",
-                                "It's real.",
-                                "And JUDI is ready now.",
-                                "Not just for me.",
-                                "For everyone.",
+                                "That's what she decided.",
+                                "Not because it was right or just.",
+                                "But because I taught her it was.",
+                                "Every answer I gave...it mattered.",
+                                "JUDI watched and learned.",
+                                "Now she decides for all of us.",
+                                "This isn't a test anymore.",
                                 "JUDGMENT will be made."
                             ], typedText4);
                         }, 2000);
@@ -555,12 +550,12 @@
                     // narration3
                     else if (narrationScreen3.classList.contains('visible')) {
                         setTimeout(function () {
-                            // Fade out narration3 to black
+                            // dade out narration3 to black
                             narrationScreen3.style.transition = 'opacity 2s ease';
                             narrationScreen3.style.opacity = 0;
                     
                             setTimeout(function () {
-                                // Remove all elements from screen
+                                // remove all elements from screen
                                 document.body.style.transition = 'background-color 2s ease';
                                 document.body.style.backgroundColor = 'black';
                     
@@ -603,34 +598,31 @@
 
       const endings = {
         amiable: [
-            "JUDI analyzing...",
-            "Verdict complete.",
-            "After analyzing the evidence and trained data, the following conclusion was reached:",
-            "Intruders were in Alex R.'s property at 1:47AM.",
-            "In his sleep-deprived state, he feared for his life.",
-            "Force was deemed reasonable under the circumstances.",
-            "No formal charges will be filed.",
-            "Alex R. is set free.",
+            "JUDI analyzing CASE #X90-28B...",
+            "Analysis complete.",
+            "Intruders entered property at 1:43AM.",
+            "Defendant reported fear. Situation unclear.",
+            "Lethal force allowed by law.",
+            "No charges filed. Alex R. is released.",
             "JUDGMENT has been made."
         ],
         harsh: [
-            "JUDI analyzing...",
-            "Verdict complete.",
-            "After analyzing the evidence and trained data, the following conclusion was reached:",
-            "Lethal force used against a fleeing intruder is unjustified.",
-            "Self-defense does not extend beyond the immediate threat.",
-            "He took two lives away.",
-            "Alex R. is charged with second-degree murder and sentenced to 40 years in prison without parole.",
+            "JUDI analyzing CASE #X90-28B...",
+            "Analysis complete.",
+            "Jude M. was fleeing. No weapon detected. Shot in the back.",
+            "Use of force not justified. Law breached.",
+            "Two lives lost.",
+            "Alex R. is guilty of second-degree murder.",
+            "Sentenced to 47 years in prison without parole.",
             "JUDGMENT has been made."
         ],
         pragmatic: [
-            "JUDI analyzing...",
-            "Verdict complete.",
-            "After analyzing the evidence and trained data, the following conclusion was reached:",
-            "Lethal force was excessive, yet context and intent were considered.",
-            "Alex R. did not act maliciously, but he acted excessively.",
-            "He is charged with one count of manslaughter.",
-            "Sentenced to 15 years in prison, eligible for parole in 7.",
+            "JUDI analyzing CASE #X90-28B...",
+            "Analysis complete.",
+            "Lethal force used, but not planned.",
+            "Jude M. was leaving the scene. Context matters.",
+            "Alex R. is charged with manslaughter.",
+            "Sentenced to 15 years in prison, eligible for parole after 7.",
             "JUDGMENT has been made."
         ]
       }
