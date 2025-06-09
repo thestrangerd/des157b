@@ -39,12 +39,12 @@ img {
 
 body {
     background-color: black;
-    position: relative;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
     font-family: "aktiv-grotesk-condensed", sans-serif;
     overflow: hidden;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
 }
 
 .vignette-overlay {
@@ -631,7 +631,7 @@ h5 {
     height: 100vh;
     display: none;
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 2s ease;
 }
 
 #narration-screen1.visible, #narration-screen2.visible, #narration-screen3.visible {
@@ -718,4 +718,14 @@ h6 {
     justify-content: center;
     height: 100vh;
     padding: 2em;
+}
+
+#black-screen {
+    background-color: black;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    transition: opacity 2s ease;
 }

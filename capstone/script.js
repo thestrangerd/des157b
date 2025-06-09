@@ -134,7 +134,7 @@
     // tracks player decisions
     const personalityScore = {
         amiable: 0,
-        harsh: 0,
+        harsh: 1,
         pragmatic: 0
     };
     
@@ -158,15 +158,16 @@
 
     // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
-        // courtScene.classList.add('visible');
+        courtScene.classList.add('visible');
+        bgMusic.play();
         // gamescreen.classList.add('visible');
         // question1.classList.add('visible');
 
         // loadQuestion(0);
         // bgAudio.pause();
     
-        startup.play();
-        bgAudio.play();
+        // startup.play();
+        // bgAudio.play();
 
         narrationScreen1.classList.remove('visible');
         narrationScreen2.classList.remove('visible');
@@ -379,10 +380,18 @@
 
     // AI SIMULATION ----------------------------------------------
 
+    function fadeToBlack(delay = 0) {
+        const blackScreen = document.querySelector('#black-screen');
+        setTimeout(function() {
+            blackScreen.style.opacity = 1;
+        }, delay);
+    }
+
     // NARRATION
     const typedText1 = document.querySelector('#typed-text1');
     const typedText2 = document.querySelector('#typed-text2');
     const typedText3 = document.querySelector('#typed-text3');
+    const typedText4 = document.querySelector('#typed-text4');
 
     // got help from chatgpt to learn typing animation
     function typeLines(lines, typedText, callback) {
@@ -452,85 +461,126 @@
         ], typedText2);
 
         setTimeout(function() {
-            narrationScreen2.classList.remove('visible');
-            sentencingScene.classList.add('visible');
+            narrationScreen2.style.transition = 'opacity 2s ease';
+            narrationScreen2.style.opacity = 1;
 
-            const result = getPersonality(personalityScore);
-            const endingLines = endings[result];
-            singleLine(endingLines, typedText3);
+            setTimeout(function() {
+                sentencingScene.style.display = 'block';
+                setTimeout(function() {
+                    sentencingScene.classList.add('visible');
+                }, 50);
+
+                
+                narrationScreen2.style.opacity = 0;
+
+                setTimeout(function() {
+                    narrationScreen2.classList.remove('visible');
+                    narrationScreen2.style.transition = 'opacity 2s ease';
+                    narrationScreen2.style.opacity = 1;
+                }, 2000);
+
+                const result = getPersonality(personalityScore);
+                const endingLines = endings[result];
+                singleLine(endingLines, typedText3);
+            }, 2000);
         }, 18000)
     })
 
 
     function singleLine(lines, container, delay = 5000) {
         let index = 0;
-      
+    
         function showNext() {
-          if (index >= lines.length) {
-                sentencingScene.style.transition = 'opacity 2s ease';
-                sentencingScene.style.opacity = 0;
-
-                // setTimeout(function() {
-                //     sentencingScene.style.display = 'none'; 
-                //     narrationScreen3.classList.add('visible');
-                // }, 2000);
-            return;
-          }
-      
-          container.innerHTML = ''; // clear previous
-          const p = document.createElement('p');
-          p.textContent = lines[index];
-          p.style.opacity = 0;
-          p.style.transition = 'opacity 2s ease-in-out';
-          p.style.textAlign = 'center';
-          p.style.fontSize = '1.4rem';
-          container.appendChild(p);
-      
-          setTimeout(function() {
-            p.style.opacity = 1;
-          }, 100); // text fade in
-
-          if (index < lines.length - 1) {
+            container.innerHTML = ''; // clear previous
+            const p = document.createElement('p');
+            p.textContent = lines[index];
+            p.style.opacity = 0;
+            p.style.transition = 'opacity 2s ease-in-out';
+            p.style.textAlign = 'center';
+            p.style.fontSize = '1.4rem';
+            container.appendChild(p);
+    
             setTimeout(function() {
-              p.style.opacity = 0;
-            }, delay - 1500); // text fade out
-          }
-
-          if (index < lines.length - 1) {
-            setTimeout(function(){
-                index++;
-                showNext();
-            }, delay);
-          } else {
-            setTimeout(function() {      
-                index++;
-                showNext();
-            }, delay + 1000); // 1s after final line holds
-          }
+                p.style.opacity = 1;
+            }, 100); // fade in
+    
+            // if not last line, fade out to next line
+            if (index < lines.length - 1) {
+                setTimeout(function() {
+                    p.style.opacity = 0;
+                }, delay - 1500);
+    
+                setTimeout(function() {
+                    index++;
+                    showNext();
+                }, delay);
+            } 
+            // if last line, hold trigger
+            else {
+                fadeToBlack();
+                setTimeout(function() {
+                    // fade out sentencing scene
+                    if (sentencingScene.classList.contains('visible')) {
+                        
+                        narrationScreen3.style.display = 'block';
+                        setTimeout(() => {
+                            narrationScreen3.classList.add('visible');
+                        }, 50);
+                    
+                        sentencingScene.style.transition = 'opacity 2s ease';
+                        sentencingScene.style.opacity = 0;
+                    
+                        setTimeout(function () {
+                            sentencingScene.classList.remove('visible');
+                            sentencingScene.style.display = 'none';
+                            sentencingScene.style.opacity = 1; // reset for future
+                    
+                            singleLine([
+                                "This is the world JUDI is learning to shape.",
+                                "And I was a part of it.",
+                                "Every judgment I made became part of its logic.",
+                                "Not just who I favored, but what I overlooked.",
+                                "Was I really training justice...",
+                                "or just teaching it to judge like me?",
+                                "It wasn't just a test.",
+                                "It's real.",
+                                "And JUDI is ready now.",
+                                "Not just for me.",
+                                "For everyone.",
+                                "JUDGMENT will be made."
+                            ], typedText4);
+                        }, 2000);
+                    }
+                    
+                    // narration3
+                    else if (narrationScreen3.classList.contains('visible')) {
+                        setTimeout(function () {
+                            // Fade out narration3 to black
+                            narrationScreen3.style.transition = 'opacity 2s ease';
+                            narrationScreen3.style.opacity = 0;
+                    
+                            setTimeout(function () {
+                                // Remove all elements from screen
+                                document.body.style.transition = 'background-color 2s ease';
+                                document.body.style.backgroundColor = 'black';
+                    
+                                narrationScreen1.style.display = 'none';
+                                narrationScreen2.style.display = 'none';
+                                narrationScreen3.style.display = 'none';
+                                typedText4.style.display = 'none';
+                                courtScene.style.display = 'none';
+                                sentencingScene.style.display = 'none';
+                                gamescreen.style.display = 'none';
+                                endScreen.style.display = 'none';
+                            }, 2000); // after fade to black
+                        }, 3000); // hold the final line on screen
+                    }
+                }, delay + 1000); // hold the last line for 1s
+            }
         }
-      
+    
         showNext();
-      }
-
-
-    singleLine(endingLines, typedText3, function () {
-        sentencingScene.style.display = 'none';
-        narrationScreen3.classList.add('visible');
-
-        setTimeout(() => {
-            singleLine([
-                "This is the world JUDI is learning to shape.",
-                "And I was a part of it.",
-                "Every judgment I made became part of its logic",
-                "Not just who I favored, but what I overlooked.",
-                "Who I protected. Who I punished. Who I hesitated on.",
-                "Was I really training justice...",
-                "or just teaching it to judge like me?",
-                "Who am I to determine justice?"
-            ], typedText3);
-        }, 2000);
-    }, 2000);
-      
+    }
 
 
       // SENTENCING (PERSONALITY)
@@ -555,7 +605,7 @@
         amiable: [
             "JUDI analyzing...",
             "Verdict complete.",
-            "After analyzing the evidence and trained data, here is the following verdict:",
+            "After analyzing the evidence and trained data, the following conclusion was reached:",
             "Intruders were in Alex R.'s property at 1:47AM.",
             "In his sleep-deprived state, he feared for his life.",
             "Force was deemed reasonable under the circumstances.",
@@ -566,7 +616,7 @@
         harsh: [
             "JUDI analyzing...",
             "Verdict complete.",
-            "After analyzing the evidence and trained data, here is the following verdict:",
+            "After analyzing the evidence and trained data, the following conclusion was reached:",
             "Lethal force used against a fleeing intruder is unjustified.",
             "Self-defense does not extend beyond the immediate threat.",
             "He took two lives away.",
