@@ -56,9 +56,11 @@
     // POST-JUDGMENT
     const narrationScreen1 = document.querySelector('#narration-screen1');
     const narrationScreen2 = document.querySelector('#narration-screen2');
+    const narrationScreen3 = document.querySelector('#narration-screen3');
 
     const courtScene = document.querySelector('#court-scene');
     const continueBtn = document.querySelector('#continue');
+    const sentencingScene = document.querySelector('#sentencing');
 
 
     const simulation = {
@@ -156,16 +158,18 @@
 
     // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
-        // endScreen.classList.add('visible');
+        // courtScene.classList.add('visible');
         // gamescreen.classList.add('visible');
         // question1.classList.add('visible');
 
         // loadQuestion(0);
         // bgAudio.pause();
-        // gamescreen.classList.add('visible');
-        // question1.classList.add('visible');
+    
         startup.play();
         bgAudio.play();
+
+        narrationScreen1.classList.remove('visible');
+        narrationScreen2.classList.remove('visible');
      });
 
     window.addEventListener('mousedown', function(){ 
@@ -264,7 +268,7 @@
             setTimeout(function() {
                 narration.currentTime = 0;
                 narration.play();
-            }, 4500);
+            }, 4200);
         }
     });
 
@@ -375,8 +379,10 @@
 
     // AI SIMULATION ----------------------------------------------
 
+    // NARRATION
     const typedText1 = document.querySelector('#typed-text1');
     const typedText2 = document.querySelector('#typed-text2');
+    const typedText3 = document.querySelector('#typed-text3');
 
     // got help from chatgpt to learn typing animation
     function typeLines(lines, typedText, callback) {
@@ -426,9 +432,9 @@
       ], typedText1);
 
         setTimeout(function() {
+            bgMusic.play();
             narrationScreen1.classList.remove('visible');
             courtScene.classList.add('visible');
-            bgMusic.play();
         }, 15000)
     })
 
@@ -438,19 +444,147 @@
         narrationScreen2.classList.add('visible');
 
         typeLines([
-            "It was my brother.",
-            "He shot two intruders out of fear and self defense.",
-            "They say they were unarmed.",
-            "I don't know what will happen to him.",
-            "I don't know how JUDI will react."
+            "It was my brother, Jude.",
+            "Shot in the back running for his life.",
+            "He was unarmed. Just a petty thief.",
+            "They called it self-defense, but he was already fleeing out the door.",
+            "Now it was up to JUDI to decide his fate."
         ], typedText2);
 
         setTimeout(function() {
             narrationScreen2.classList.remove('visible');
-            courtScene.classList.add('visible');
+            sentencingScene.classList.add('visible');
+
+            const result = getPersonality(personalityScore);
+            const endingLines = endings[result];
+            singleLine(endingLines, typedText3);
         }, 18000)
     })
 
+
+    function singleLine(lines, container, delay = 5000) {
+        let index = 0;
+      
+        function showNext() {
+          if (index >= lines.length) {
+                sentencingScene.style.transition = 'opacity 2s ease';
+                sentencingScene.style.opacity = 0;
+
+                // setTimeout(function() {
+                //     sentencingScene.style.display = 'none'; 
+                //     narrationScreen3.classList.add('visible');
+                // }, 2000);
+            return;
+          }
+      
+          container.innerHTML = ''; // clear previous
+          const p = document.createElement('p');
+          p.textContent = lines[index];
+          p.style.opacity = 0;
+          p.style.transition = 'opacity 2s ease-in-out';
+          p.style.textAlign = 'center';
+          p.style.fontSize = '1.4rem';
+          container.appendChild(p);
+      
+          setTimeout(function() {
+            p.style.opacity = 1;
+          }, 100); // text fade in
+
+          if (index < lines.length - 1) {
+            setTimeout(function() {
+              p.style.opacity = 0;
+            }, delay - 1500); // text fade out
+          }
+
+          if (index < lines.length - 1) {
+            setTimeout(function(){
+                index++;
+                showNext();
+            }, delay);
+          } else {
+            setTimeout(function() {      
+                index++;
+                showNext();
+            }, delay + 1000); // 1s after final line holds
+          }
+        }
+      
+        showNext();
+      }
+
+
+    singleLine(endingLines, typedText3, function () {
+        sentencingScene.style.display = 'none';
+        narrationScreen3.classList.add('visible');
+
+        setTimeout(() => {
+            singleLine([
+                "This is the world JUDI is learning to shape.",
+                "And I was a part of it.",
+                "Every judgment I made became part of its logic",
+                "Not just who I favored, but what I overlooked.",
+                "Who I protected. Who I punished. Who I hesitated on.",
+                "Was I really training justice...",
+                "or just teaching it to judge like me?",
+                "Who am I to determine justice?"
+            ], typedText3);
+        }, 2000);
+    }, 2000);
+      
+
+
+      // SENTENCING (PERSONALITY)
+
+      function getPersonality(score) {
+        if (
+          score.amiable > score.harsh &&
+          score.amiable > score.pragmatic
+        ) {
+          return 'amiable';
+        } else if (
+          score.harsh > score.amiable &&
+          score.harsh > score.pragmatic
+        ) {
+          return 'harsh';
+        } else {
+          return 'pragmatic';
+        }
+      }
+
+      const endings = {
+        amiable: [
+            "JUDI analyzing...",
+            "Verdict complete.",
+            "After analyzing the evidence and trained data, here is the following verdict:",
+            "Intruders were in Alex R.'s property at 1:47AM.",
+            "In his sleep-deprived state, he feared for his life.",
+            "Force was deemed reasonable under the circumstances.",
+            "No formal charges will be filed.",
+            "Alex R. is set free.",
+            "JUDGMENT has been made."
+        ],
+        harsh: [
+            "JUDI analyzing...",
+            "Verdict complete.",
+            "After analyzing the evidence and trained data, here is the following verdict:",
+            "Lethal force used against a fleeing intruder is unjustified.",
+            "Self-defense does not extend beyond the immediate threat.",
+            "He took two lives away.",
+            "Alex R. is charged with second-degree murder and sentenced to 40 years in prison without parole.",
+            "JUDGMENT has been made."
+        ],
+        pragmatic: [
+            "JUDI analyzing...",
+            "Verdict complete.",
+            "After analyzing the evidence and trained data, the following conclusion was reached:",
+            "Lethal force was excessive, yet context and intent were considered.",
+            "Alex R. did not act maliciously, but he acted excessively.",
+            "He is charged with one count of manslaughter.",
+            "Sentenced to 15 years in prison, eligible for parole in 7.",
+            "JUDGMENT has been made."
+        ]
+      }
+    
 
     
  

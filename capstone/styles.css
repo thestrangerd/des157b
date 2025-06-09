@@ -38,6 +38,7 @@ img {
 /* PC SCREEN ------------------------------------------ */
 
 body {
+    background-color: black;
     position: relative;
     margin: 0;
     width: 100vw;
@@ -74,6 +75,7 @@ h1 {
     height: 100vh;
     background-color: #FFF8EB;
     overflow: hidden;
+    cursor: default;
 }
 
 
@@ -297,10 +299,12 @@ a:hover::after {
     z-index: 8;
 
     opacity: 0;
+    display: none;
 }
 
 #judgment.visible {
     opacity: 1;
+    display: block;
     pointer-events: all;
 }
 
@@ -617,7 +621,7 @@ h5 {
 /* POST-JUDGMENT ------------------------------------------ */
 
 /* NARRATION SCREEN ----- */
-#narration-screen1, #narration-screen2 {
+#narration-screen1, #narration-screen2, #narration-screen3 {
     background-color: black;
     position: fixed;
     top: 50%; left: 50%;
@@ -626,11 +630,14 @@ h5 {
     width: 100vw;
     height: 100vh;
     display: none;
-    cursor: none;
+    opacity: 0;
+    transition: opacity 1s ease;
 }
 
-#narration-screen1.visible, #narration-screen2.visible {
+#narration-screen1.visible, #narration-screen2.visible, #narration-screen3.visible {
+    opacity: 1;
     display: block;
+    cursor: none;
 }
 
 .typed-text p {
@@ -640,9 +647,9 @@ h5 {
 }
 
 
-/* COURT SCENE ----- */
+/* COURT CASE ----- */
 
-#court-scene {
+#court-scene, #sentencing {
     background-color: rgb(196, 40, 40);
     color: #FCFCFC;
     position: fixed;
@@ -654,11 +661,12 @@ h5 {
     display: none;
 }
 
-#court-scene.visible {
+#court-scene.visible, #sentencing.visible {
+    opacity: 1;
     display: block;
 }
 
-#courtroom {
+#court-case {
     position: absolute; 
     top: 55%; left: 50%;
     transform: translate(-50%, -50%);
@@ -684,4 +692,30 @@ h6 {
     font-size: 1.2rem;
     padding: 0.5em 0.7em;
     margin-top: 1.5em;
+}
+
+
+/* SENTENCING ----- */
+
+#sentencing {
+    opacity: 1;
+    transition: opacity 2s ease;
+}
+
+#sentencing.visible {
+    cursor: none;
+}
+
+#analyze {
+    animation: loading 1s infinite;
+}
+
+#typed-text3, #typed-text4 {
+    color: #FCFCFC;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 2em;
 }
