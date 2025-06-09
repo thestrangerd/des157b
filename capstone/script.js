@@ -7,7 +7,6 @@
     const mouseclick = document.querySelector('#mouseclick');
     const startup = document.querySelector('#startup');
     const loadingAudio = document.querySelector('#loading-audio');
-    const narration = document.querySelector('#narration');
     const buttonAudio = document.querySelector('#button-audio');
     const errorAudio = document.querySelector('#error-audio');
     const typingAudio = document.querySelector('#typing');
@@ -16,7 +15,6 @@
     errorAudio.volume = 0.3;
     mouseclick.volume = 0.3;
     bgMusic.volume = 0.3;
-    narration.playbackRate = 1.5;
 
     // ICONS
     const clock = document.querySelector('#clock');
@@ -134,7 +132,7 @@
     // tracks player decisions
     const personalityScore = {
         amiable: 0,
-        harsh: 1,
+        harsh: 0,
         pragmatic: 0
     };
     
@@ -262,13 +260,6 @@
 
         gamescreen.classList.add('visible');
         settingsIcon.classList.add('settings-top-right');
-
-        if (gamescreen.classList.contains('visible')) {
-            setTimeout(function() {
-                narration.currentTime = 0;
-                narration.play();
-            }, 4200);
-        }
     });
 
     
@@ -276,15 +267,11 @@
     closeWindow.addEventListener('click', function() {
         quitOverlay.style.display = 'block';
         quitBg.style.display = 'block';
-        narration.pause();
     })
 
     cancelBtn.addEventListener('click', function() {
         quitOverlay.style.display = 'none';
         quitBg.style.display = 'none';
-        if (gamescreen.classList.contains('visible') && !question1.classList.contains('visible')) {
-            narration.play();
-        }
     })
 
     quitBtn.addEventListener('click', function() {
@@ -294,7 +281,6 @@
         });
         quitOverlay.style.display = 'none';
         quitBg.style.display = 'none';
-        narration.pause();
         settingsIcon.classList.remove('settings-top-right');
     })
 
@@ -317,7 +303,6 @@
     startGame.addEventListener('click', function() {
         question1.classList.add('visible');
         loadQuestion(0);
-        narration.pause();
     })
 
     options.forEach(function(option) {
@@ -380,11 +365,20 @@
 
     function fadeToBlack(delay = 0) {
         const blackScreen = document.querySelector('#black-screen');
+        blackScreen.style.zIndex = '100';
         setTimeout(function() {
             blackScreen.style.opacity = 1;
-            blackScreen.style.display = 'block';
         }, delay);
     }
+
+    function fadeFromBlack(delay = 0) {
+        const blackScreen = document.querySelector('#black-screen');
+        blackScreen.style.display = 'none';
+        setTimeout(function() {
+            blackScreen.style.opacity = 0;
+        }, delay);
+    }
+
 
     // NARRATION
     const typedText1 = document.querySelector('#typed-text1');
@@ -456,7 +450,7 @@
             "Shot in the back running for his life.",
             "He was unarmed. Just a petty thief.",
             "They called it self-defense, but he was already fleeing out the door.",
-            "Now JUDI decides if that was justice."
+            "Now JUDI must decide if that was justice."
         ], typedText2);
 
         setTimeout(function() {
@@ -469,7 +463,6 @@
                     sentencingScene.classList.add('visible');
                 }, 50);
 
-                
                 narrationScreen2.style.opacity = 0;
 
                 setTimeout(function() {
@@ -538,8 +531,6 @@
                                 "That's what she decided.",
                                 "Not because it was right or just.",
                                 "But because I taught her it was.",
-                                "Every answer I gave...it mattered.",
-                                "JUDI watched and learned.",
                                 "Now she decides for all of us.",
                                 "This isn't a test anymore.",
                                 "JUDGMENT will be made."
@@ -551,23 +542,46 @@
                     else if (narrationScreen3.classList.contains('visible')) {
                         setTimeout(function () {
                             // dade out narration3 to black
-                            narrationScreen3.style.transition = 'opacity 2s ease';
+                            narrationScreen3.style.transition = 'opacity 10s ease';
                             narrationScreen3.style.opacity = 0;
-                    
-                            setTimeout(function () {
-                                // remove all elements from screen
-                                document.body.style.transition = 'background-color 2s ease';
-                                document.body.style.backgroundColor = 'black';
-                    
-                                narrationScreen1.style.display = 'none';
-                                narrationScreen2.style.display = 'none';
-                                narrationScreen3.style.display = 'none';
+
+                            setTimeout(function() {
+                                const fadeAudio = setInterval(function() {
+                                    if (bgMusic.volume > 0.05) {
+                                        bgMusic.volume -= 0.05;
+                                    } else {
+                                        bgMusic.volume = 0;
+                                        bgMusic.pause();
+                                        clearInterval(fadeAudio);
+                                    }
+                                }, 1000);
                                 typedText4.style.display = 'none';
-                                courtScene.style.display = 'none';
-                                sentencingScene.style.display = 'none';
-                                gamescreen.style.display = 'none';
-                                endScreen.style.display = 'none';
-                            }, 2000); // after fade to black
+                            }, 2000);
+
+                            setTimeout(function () {
+                                // fade to black and hold
+                                fadeToBlack();
+                        
+                                setTimeout(function () {
+                                    // hide screens
+                                    narrationScreen1.style.display = 'none';
+                                    narrationScreen2.style.display = 'none';
+                                    narrationScreen3.style.display = 'none';
+                                    courtScene.style.display = 'none';
+                                    sentencingScene.style.display = 'none';
+                                    endScreen.style.display = 'none';
+                        
+                                    // restart to beginning
+                                    gamescreen.style.display = 'block';
+
+                                    setTimeout(() => {
+                                        fadeFromBlack();
+                                        startup.currentTime = 0;
+                                        startup.play();
+                                    }, 3000); // delay before fade in
+                                }, 5000); // black screen hold before transition
+                            }, 2000);
+                    
                         }, 3000); // hold the final line on screen
                     }
                 }, delay + 1000); // hold the last line for 1s
@@ -613,7 +627,7 @@
             "Use of force not justified. Law breached.",
             "Two lives lost.",
             "Alex R. is guilty of second-degree murder.",
-            "Sentenced to 47 years in prison without parole.",
+            "Sentenced to 17 years in prison without parole.",
             "JUDGMENT has been made."
         ],
         pragmatic: [
@@ -622,7 +636,7 @@
             "Lethal force used, but not planned.",
             "Jude M. was leaving the scene. Context matters.",
             "Alex R. is charged with manslaughter.",
-            "Sentenced to 15 years in prison, eligible for parole after 7.",
+            "Sentenced to 8 years in prison, eligible for parole after 4.",
             "JUDGMENT has been made."
         ]
       }
