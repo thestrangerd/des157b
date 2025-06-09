@@ -163,16 +163,13 @@
 
     // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
-        gamescreen.classList.add('visible');
-        question1.classList.add('visible');
-        bgAudio.pause();
-        // startup.play();
-        // bgAudio.play();
+        startup.play();
+        bgAudio.play();
      });
 
     window.addEventListener('mousedown', function(){ 
         mouseclick.currentTime = 0;
-        // mouseclick.play(); 
+        mouseclick.play(); 
     });
 
     document.querySelectorAll('button').forEach(button => {

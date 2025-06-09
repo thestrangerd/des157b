@@ -617,7 +617,7 @@ h5 {
 /* POST-JUDGMENT ------------------------------------------ */
 
 /* NARRATION SCREEN ----- */
-#narration-screen {
+#narration-screen1, #narration-screen2 {
     background-color: black;
     position: fixed;
     top: 50%; left: 50%;
@@ -629,15 +629,14 @@ h5 {
     cursor: none;
 }
 
-#narration-screen.visible {
+#narration-screen1.visible, #narration-screen2.visible {
     display: block;
 }
 
-#typed-text p {
-    margin: 1em 0;
+.typed-text p {
     font-size: 1.5rem;
     color: #FCFCFC;
-    margin: 3em 3em;
+    margin: 4em 3em;
 }
 
 
@@ -683,6 +682,6 @@ h6 {
 
 #continue {
     font-size: 1.2rem;
-    padding: 0.5em 1em;
+    padding: 0.5em 0.7em;
     margin-top: 1.5em;
 }

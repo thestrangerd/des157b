@@ -12,10 +12,10 @@
     const errorAudio = document.querySelector('#error-audio');
     const typingAudio = document.querySelector('#typing');
     const bgMusic = document.querySelector('#bg-music');
-    bgAudio.volume = 0.3;
+    bgAudio.volume = 0.2;
     errorAudio.volume = 0.3;
     mouseclick.volume = 0.3;
-    // bgMusic.volume = 0.5;
+    bgMusic.volume = 0.3;
     narration.playbackRate = 1.5;
 
     // ICONS
@@ -54,7 +54,9 @@
     let currentQuestion = 0;
 
     // POST-JUDGMENT
-    const narrationScreen = document.querySelector('#narration-screen');
+    const narrationScreen1 = document.querySelector('#narration-screen1');
+    const narrationScreen2 = document.querySelector('#narration-screen2');
+
     const courtScene = document.querySelector('#court-scene');
     const continueBtn = document.querySelector('#continue');
 
@@ -154,16 +156,16 @@
 
     // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
-        endScreen.classList.add('visible');
-        gamescreen.classList.add('visible');
-        question1.classList.add('visible');
+        // endScreen.classList.add('visible');
+        // gamescreen.classList.add('visible');
+        // question1.classList.add('visible');
 
         // loadQuestion(0);
         // bgAudio.pause();
         // gamescreen.classList.add('visible');
         // question1.classList.add('visible');
-        // startup.play();
-        // bgAudio.play();
+        startup.play();
+        bgAudio.play();
      });
 
     window.addEventListener('mousedown', function(){ 
@@ -253,7 +255,7 @@
           loadingScreen.classList.remove('active');
           loadingAudio.pause();
           settingsIcon.style.display = 'block';
-        }, 0);
+        }, 3500);
 
         gamescreen.classList.add('visible');
         settingsIcon.classList.add('settings-top-right');
@@ -361,6 +363,7 @@
             question1.classList.remove('visible');
             endScreen.classList.add('visible');
             closeWindow.style.display = 'none';
+            settingsIcon.style.display = 'none';
 
             if (endScreen.classList.contains('visible')) {
                 bgAudio.pause();
@@ -372,34 +375,17 @@
 
     // AI SIMULATION ----------------------------------------------
 
-    const typedText = document.querySelector('#typed-text');
+    const typedText1 = document.querySelector('#typed-text1');
+    const typedText2 = document.querySelector('#typed-text2');
 
     // got help from chatgpt to learn typing animation
-    endButton.addEventListener('click', function() {
-      narrationScreen.classList.add('visible');
-      mouseclick.muted = true;
-      bgAudio.muted = true; 
+    function typeLines(lines, typedText, callback) {
+        // const typedText = document.querySelector('.narration-screen.visible .typed-text');
+        typedText.innerHTML = ''; // clear previous text
+        let index = 0; // keeps track of current line
 
-      typedText.textContent = ''; // clear previous text
-      let index = 0; // keeps track of current line
-
-      const lines = [
-        "It's been ten years since I last touched JUDGMENT.",
-        "I thought it was the last time I'd ever see it.",
-        "But I was wrong.", 
-        "So very wrong."
-      ]
-    
-      function typeLine() {
-            if (index >= lines.length) {
-                setTimeout(function(){
-                    narrationScreen.classList.remove('visible');
-                    courtScene.classList.add('visible');
-                    bgMusic.currentTime = 1.5;
-                    bgMusic.play();
-                }, 2000)
-                return; // done typing all lines
-            }
+        function typeLine() {
+            if (index >= lines.length) return;
 
             const line = lines[index]; // grab line about to type
             let charIndex = 0; // tracks character
@@ -420,22 +406,49 @@
                   setTimeout(typeLine, 1000); // time between each line
                 }
               }, 50); // typing speed
-      }
+        }
 
-      setTimeout(typeLine, 2000);
+        setTimeout(typeLine, 2000);
+    }
+
+
+    endButton.addEventListener('click', function() {
+      endScreen.classList.remove('visible');
+      narrationScreen1.classList.add('visible');
+      mouseclick.muted = true;
+      bgAudio.muted = true; 
+
+      typeLines([
+        "It's been ten years since I last used JUDGMENT.",
+        "I thought it was the last time I'd ever see it.",
+        "But I was wrong.", 
+        "So very wrong."
+      ], typedText1);
+
+        setTimeout(function() {
+            narrationScreen1.classList.remove('visible');
+            courtScene.classList.add('visible');
+            bgMusic.play();
+        }, 15000)
     })
+
 
     continueBtn.addEventListener('click', function() {
         courtScene.classList.remove('visible');
-        narrationScreen.classList.add('visible');
+        narrationScreen2.classList.add('visible');
 
-        const lines2 = [
+        typeLines([
             "It was my brother.",
             "He shot two intruders out of fear and self defense.",
-            "They say "
-        ];
+            "They say they were unarmed.",
+            "I don't know what will happen to him.",
+            "I don't know how JUDI will react."
+        ], typedText2);
 
-        typeLines(lines2);
+        setTimeout(function() {
+            narrationScreen2.classList.remove('visible');
+            courtScene.classList.add('visible');
+        }, 18000)
     })
 
 
