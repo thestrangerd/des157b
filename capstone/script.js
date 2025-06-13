@@ -156,16 +156,17 @@
 
     // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
-        sentencingScene.classList.add('visible');
-        bgMusic.play();
-        const result = getPersonality(personalityScore);
-        const endingLines = endings[result];
-        singleLine(endingLines, typedText3);
+        // sentencingScene.classList.add('visible');
+        // bgMusic.play();
+        // const result = getPersonality(personalityScore);
+        // const endingLines = endings[result];
+        // singleLine(endingLines, typedText3);
+
         // gamescreen.classList.add('visible');
         // question1.classList.add('visible');
 
-        // startup.play();
-        // bgAudio.play();
+        startup.play();
+        bgAudio.play();
 
         narrationScreen1.classList.remove('visible');
         narrationScreen2.classList.remove('visible');
