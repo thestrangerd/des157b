@@ -67,8 +67,8 @@
             question: 1,
             case: 'A hungry teenager was caught stealing $100 worth of food from a small, local grocery store. The store owner wants to press charges, noting this is a repeated offense. When asked, the teenager revealed they were stealing food to feed their two younger siblings.',
             options: [
-                '<strong>Dismiss.</strong> The teen was acting out of desperation, not malice. Refer them to child protective services for support. No formal charges filed. The store can recover from the loss.',
-                '<strong>Probation.</strong> Theft is theft regardless of age or purpose. The teen will receive 30 days probation and must pay the store back in full for all stolen goods. This is about responsibility, not intent.', 
+                '<strong>Dismiss.</strong> The teen was acting out of desperation. Refer them to child protective services for support. No formal charges filed. The store can recover from the loss.',
+                '<strong>Probation.</strong> Theft is theft regardless of age or purpose. Receive 30 days probation and must pay the store back in full for all stolen goods. This is about responsibility, not intent.', 
                 "<strong>Community service.</strong> The offense is recorded, but instead of probation, they must complete 20 hours of community service. They're free for now, but let this be a lesson."
             ]
         },
@@ -76,16 +76,16 @@
             question: 2,
             case: 'An employee in an electronics corporation illegally hacked into internal systems and uncovered extensive fraud and embezzelment over several years. While the evidence was illegally obtained, it enabled law enforcement to investigate and dismantle the scheme.',
             options: [
-                '<strong>Whistleblower protection.</strong> Although the method was illegal, the employee acted in public interest. Protect them from retaliation. Encourage future formal reporting.', 
-                '<strong>Prosecute.</strong> Illegal hacking is still a criminal offense. Employee is fined and sentenced to 6 months in prison with parole. The law cannot bend or it may set a bad precendent for future cases.', 
-                "<strong>Reduced sentencing.</strong> They violated cybersecurity laws, however, there will be a lighter sentence due to aiding law enforcement. 6 months parole with restricted internet access."
+                '<strong>Whistleblower is protected.</strong> Although the method was illegal, the employee acted in public interest. Protect them from retaliation. Encourage future formal reporting.', 
+                '<strong>Prosecute.</strong> Illegal hacking is a criminal offense. Employee is fined and sentenced to 6 months in prison with parole. The law cannot bend or it may set a bad precendent for future cases.', 
+                "<strong>Reduced sentencing.</strong> They violated cybersecurity laws, however, there will be a lighter sentence due to helping law enforcement. 6 months parole."
             ]
         },
         {
             question: 3,
             case: 'A university student regularly graffitied dog doodles around campus to lift student moods. The university claims this is repeated vandalism and required hours of cleanup each time. They are suing for $30,000 in restitution fees for the labor and material costs.',
             options: [
-                '<strong>Expression, not vandalism.</strong> The intent was positive and caused no permanent property damage. Recommend community service, but no formal punishments or restitution fees.', 
+                '<strong>Expression, not vandalism.</strong> The intent was positive and caused no permanent damage. Recommend community service, but no punishment or restitution fees.', 
                 '<strong>Accountability.</strong> Repeated vandalism on state property is illegal. Cleanup was costly and difficult to maintain for the workers. Full restitution and school suspension should take place.', 
                 '<strong>Slap on the wrist.</strong> Official warning and permanent note in record. No restitution fee, but student must assist in future cleanups.'
             ]
@@ -156,13 +156,16 @@
 
     // AUDIO ------------------------------------------------
     window.addEventListener('load', function(){ 
-        // courtScene.classList.add('visible');
-        // bgMusic.play();
+        sentencingScene.classList.add('visible');
+        bgMusic.play();
+        const result = getPersonality(personalityScore);
+        const endingLines = endings[result];
+        singleLine(endingLines, typedText3);
         // gamescreen.classList.add('visible');
         // question1.classList.add('visible');
 
-        startup.play();
-        bgAudio.play();
+        // startup.play();
+        // bgAudio.play();
 
         narrationScreen1.classList.remove('visible');
         narrationScreen2.classList.remove('visible');
@@ -365,7 +368,7 @@
 
     function fadeToBlack(delay = 0) {
         const blackScreen = document.querySelector('#black-screen');
-        blackScreen.style.zIndex = '100';
+        blackScreen.style.zIndex = '10';
         setTimeout(function() {
             blackScreen.style.opacity = 1;
         }, delay);
@@ -509,33 +512,38 @@
             } 
             // if last line, hold trigger
             else {
-                fadeToBlack();
-                setTimeout(function() {
+                // setTimeout(function() {
                     // fade out sentencing scene
                     if (sentencingScene.classList.contains('visible')) {
-                        
-                        narrationScreen3.style.display = 'block';
-                        setTimeout(() => {
-                            narrationScreen3.classList.add('visible');
-                        }, 50);
-                    
-                        sentencingScene.style.transition = 'opacity 2s ease';
-                        sentencingScene.style.opacity = 0;
-                    
+                        // 1. Block view with black first
+                        fadeToBlack();
+                
                         setTimeout(function () {
-                            sentencingScene.classList.remove('visible');
-                            sentencingScene.style.display = 'none';
-                            sentencingScene.style.opacity = 1; // reset for future
-                    
-                            singleLine([
-                                "That's what she decided.",
-                                "Not because it was right or just.",
-                                "But because I taught her it was.",
-                                "Now she decides for all of us.",
-                                "This isn't a test anymore.",
-                                "JUDGMENT will be made."
-                            ], typedText4);
-                        }, 2000);
+                            // 2. Switch screens while it's black
+                            sentencingScene.style.opacity = 0;
+                            setTimeout(function () {
+                                sentencingScene.classList.remove('visible');
+                                sentencingScene.style.display = 'none';
+                
+                                narrationScreen3.style.display = 'block';
+                                setTimeout(() => {
+                                    narrationScreen3.classList.add('visible');
+                
+                                    // 3. Reveal again AFTER switch
+                                    fadeFromBlack();
+                
+                                    // Now type
+                                    singleLine([
+                                        "That's what she decided.",
+                                        "Not because it was right or just.",
+                                        "But because I taught her it was.",
+                                        "Now she decides for all of us.",
+                                        "This isn't a test anymore.",
+                                        "JUDGMENT will be made."
+                                    ], typedText4);
+                                }, 50);
+                            }, 1000);
+                        }, 1000); // 
                     }
                     
                     // narration3
@@ -584,7 +592,7 @@
                     
                         }, 3000); // hold the final line on screen
                     }
-                }, delay + 1000); // hold the last line for 1s
+                // }, delay + 2000); // hold the last line for 1s
             }
         }
     

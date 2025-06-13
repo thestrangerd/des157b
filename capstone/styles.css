@@ -716,6 +716,7 @@ h6 {
     color: #FCFCFC;
     text-align: center;
     display: flex;
+    z-index: 100;
     align-items: center;
     justify-content: center;
     height: 100vh;
